@@ -1,3 +1,8 @@
-# React-Static - Basic Template
+# React Static Podcast hosting
 
-To use this template, run `react-static create` and use the `basic` template.
+resources
+
+- https://github.com/sw-yx/react-static-typescript-starter
+- https://benmccormick.org/2017/06/03/rss-atom-json-gatsby/
+- https://github.com/jpmonette/feed
+- https://github.com/wesbos/Syntax
