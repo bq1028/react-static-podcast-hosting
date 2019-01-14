@@ -1,8 +1,8 @@
 // adapted from https://github.com/jpmonette/feed
 import { Item, Author } from './types'
-import * as xml from 'xml'
+import xml from 'xml'
 import { Feed } from './feed'
-import { formatTime } from '@src/utils/formatTime'
+import { formatTime } from '../src/utils/formatTime'
 
 const DOCTYPE = '<?xml version="1.0" encoding="utf-8"?>\n'
 const CDATA = (foo: string) => ({

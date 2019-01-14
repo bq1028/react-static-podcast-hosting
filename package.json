@@ -4,12 +4,12 @@
   "scripts": {
     "start": "react-static start",
     "stage": "react-static build --staging",
-    "build": "react-static build",
+    "build": "yarn run build:stylus && react-static build",
     "bundle": "react-static bundle",
     "export": "react-static export",
     "serve": "serve dist -p 3000 -s",
-    "oldtsc:node": "tsc node/buildFeed.ts -w --p tsconfig.json",
-    "tsc:node": "tsc -w"
+    "build:stylus": "stylus src/components/player.styl --out src/components",
+    "tsc:node": "tsc -w --project node"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
@@ -25,6 +25,7 @@
     "react-icons": "^3.3.0",
     "react-static": "^6.0.18",
     "react-static-plugin-typescript": "^3.0.1",
+    "stylus": "^0.54.5",
     "xml": "^1.0.1"
   },
   "devDependencies": {

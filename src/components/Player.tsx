@@ -1,6 +1,7 @@
 import React from 'react'
 import { FaPlay, FaPause } from 'react-icons/fa'
-import { formatTime } from '@src/utils/formatTime'
+import { formatTime } from '../utils/formatTime'
+import './player.css'
 
 function usePrevious<T>(value: T) {
   const ref = React.useRef(value)
@@ -75,7 +76,7 @@ export default function Player({ show }: MyProps) {
     }
   })
 
-  const timeUpdate = e => {
+  const timeUpdate = (e: React.SyntheticEvent<HTMLAudioElement, Event>) => {
     const { timeWasLoaded } = state
     // Check if the user already had a curent time
     if (timeWasLoaded) {
@@ -95,18 +96,19 @@ export default function Player({ show }: MyProps) {
 
   const togglePlay = () => {
     const method = playing ? 'pause' : 'play'
+    console.log('togglePlay', method, audio)
     audio.current[method]()
   }
 
-  const scrubTime = eventData =>
+  const scrubTime = (eventData: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
     (eventData.nativeEvent.offsetX / progress.current.offsetWidth) *
     audio.current.duration
 
-  const scrub = e => {
-    audio.current.currentTime = scrubTime(e)
+  const scrub = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    audio.current.currentTime = +scrubTime(e)
   }
 
-  const seekTime = e => {
+  const seekTime = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setState({
       tooltipPosition: e.nativeEvent.offsetX,
       tooltipTime: formatTime(scrubTime(e)),
@@ -115,15 +117,15 @@ export default function Player({ show }: MyProps) {
 
   const playPause = () => {
     setState({ playing: !audio.current.paused })
-    const method = audio.current.paused ? 'add' : 'remove'
-    document.querySelector('.bars').classList[method]('bars--paused') // 💩
+    // const method = audio.current.paused ? 'add' : 'remove'
+    // document.querySelector('.bars').classList[method]('bars--paused') // 💩
   }
 
-  const volume = e => {
-    audio.current.volume = e.currentTarget.value
+  const volume: React.ChangeEventHandler<HTMLInputElement> = e => {
+    audio.current.volume = +e.currentTarget.value
   }
 
-  const speed = change => {
+  const speed = (change: number) => {
     const playbackRateMax = 2.5
     const playbackRateMin = 0.75
     // eslint-disable-next-line
@@ -342,7 +344,7 @@ export default function Player({ show }: MyProps) {
       </div>
       {/* eslint-disable */}
       <audio
-        ref={}
+        ref={audio}
         onPlay={playPause}
         onPause={playPause}
         onTimeUpdate={timeUpdate}

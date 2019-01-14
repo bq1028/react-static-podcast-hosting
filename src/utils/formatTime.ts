@@ -9,6 +9,6 @@ export function formatTime(timeInSeconds: number) {
   const str =
     (hours ? `${leftPad(hours)}:` : '') +
     (minutes ? `${leftPad(minutes)}:` : '') +
-    leftPad(timeInSeconds)
+    leftPad(Math.round(timeInSeconds))
   return str
 }

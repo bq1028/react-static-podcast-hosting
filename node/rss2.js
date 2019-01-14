@@ -1,51 +1,48 @@
-"use strict";
-exports.__esModule = true;
-var xml = require("xml");
-var formatTime_1 = require("../src/utils/formatTime");
-var DOCTYPE = '<?xml version="1.0" encoding="utf-8"?>\n';
-var CDATA = function (foo) { return ({
-    _cdata: foo
-}); };
-exports["default"] = (function (ins) {
-    var options = ins.options, IToptions = ins.IToptions;
-    var isAtom = false;
-    var isContent = false;
-    var makeITunesField = function (field, content, text, href) {
-        var _a;
+import xml from 'xml';
+import { formatTime } from '../src/utils/formatTime';
+const DOCTYPE = '<?xml version="1.0" encoding="utf-8"?>\n';
+const CDATA = (foo) => ({
+    _cdata: foo,
+});
+export default (ins) => {
+    const { options, IToptions } = ins;
+    let isAtom = false;
+    let isContent = false;
+    const makeITunesField = (field, content, text, href) => {
         if (!content)
             return undefined;
-        var record = (_a = {}, _a['itunes:' + field] = content, _a);
-        record._attr = { href: href, text: text };
+        const record = { ['itunes:' + field]: content };
+        record._attr = { href, text };
         return record;
     };
-    var ITchannel = [
+    const ITchannel = [
         makeITunesField('summary', IToptions.summary),
         makeITunesField('author', IToptions.author),
-        makeITunesField('keywords', IToptions.keywords.join(','))
-    ].concat(IToptions.categories.map(function (category) {
-        // TODO: recurse one level for child
-        return makeITunesField('category', '', category.cat);
-    }), [
+        makeITunesField('keywords', IToptions.keywords.join(',')),
+        ...IToptions.categories.map((category) => {
+            // TODO: recurse one level for child
+            return makeITunesField('category', '', category.cat);
+        }),
         makeITunesField('image', IToptions.image),
         makeITunesField('explicit', IToptions.explicit ? 'clean' : 'explicit'),
         {
             'itunes:owner': [
                 makeITunesField('name', CDATA(IToptions.owner.name)),
                 makeITunesField('email', IToptions.owner.email),
-            ]
+            ],
         },
         // subtitle
         makeITunesField('type', IToptions.type),
-    ]);
-    var channel = [
+    ];
+    const channel = [
         {
             'atom:link': {
                 _attr: {
                     href: invariant(options.feedLinks, 'rss', 'missing in your feed channel config options'),
                     rel: 'self',
-                    type: 'application/rss+xml'
-                }
-            }
+                    type: 'application/rss+xml',
+                },
+            },
         },
         { title: options.title },
         { link: options.link },
@@ -55,21 +52,22 @@ exports["default"] = (function (ins) {
         {
             pubDate: options.updated // TODO: use actual last pub date
                 ? options.updated.toUTCString()
-                : new Date().toUTCString()
+                : new Date().toUTCString(),
         },
         ,
         {
             lastBuildDate: options.updated
                 ? options.updated.toUTCString()
-                : new Date().toUTCString()
+                : new Date().toUTCString(),
         },
         { docs: options.link },
         {
             generator: options.generator ||
-                'https://github.com/sw-yx/react-static-typescript-starter'
-        }
-    ].concat(ITchannel);
-    var rss = [{ _attr: { version: '2.0' } }, { channel: channel }];
+                'https://github.com/sw-yx/react-static-typescript-starter',
+        },
+        ...ITchannel,
+    ];
+    const rss = [{ _attr: { version: '2.0' } }, { channel }];
     /**
      * Channel Image
      * http://cyber.law.harvard.edu/rss/rss.html#ltimagegtSubelementOfLtchannelgt
@@ -80,7 +78,7 @@ exports["default"] = (function (ins) {
                 { title: options.title },
                 { url: options.image },
                 { link: options.link },
-            ]
+            ],
         });
     }
     /**
@@ -94,14 +92,14 @@ exports["default"] = (function (ins) {
      * Channel Categories
      * http://cyber.law.harvard.edu/rss/rss.html#comments
      */
-    ins.categories.forEach(function (category) {
-        channel.push({ category: category });
+    ins.categories.forEach(category => {
+        channel.push({ category });
     });
     /**
      * Feed URL
      * http://validator.w3.org/feed/docs/warning/MissingAtomSelfLink.html
      */
-    var atomLink = options.feed || (options.feedLinks && options.feedLinks.atom);
+    const atomLink = options.feed || (options.feedLinks && options.feedLinks.atom);
     if (atomLink) {
         isAtom = true;
         channel.push({
@@ -109,9 +107,9 @@ exports["default"] = (function (ins) {
                 _attr: {
                     href: atomLink,
                     rel: 'self',
-                    type: 'application/rss+xml'
-                }
-            }
+                    type: 'application/rss+xml',
+                },
+            },
         });
     }
     /**
@@ -124,17 +122,17 @@ exports["default"] = (function (ins) {
             'atom:link': {
                 _attr: {
                     href: options.hub,
-                    rel: 'hub'
-                }
-            }
+                    rel: 'hub',
+                },
+            },
         });
     }
     /**
      * Channel Categories
      * http://cyber.law.harvard.edu/rss/rss.html#hrelementsOfLtitemgt
      */
-    ins.items.forEach(function (entry) {
-        var item = [];
+    ins.items.forEach((entry) => {
+        let item = [];
         if (entry.title) {
             item.push({ title: CDATA(entry.title) });
         }
@@ -163,7 +161,7 @@ exports["default"] = (function (ins) {
          * http://cyber.law.harvard.edu/rss/rss.html#ltauthorgtSubelementOfLtitemgt
          */
         if (Array.isArray(entry.author)) {
-            entry.author.map(function (author) {
+            entry.author.map((author) => {
                 if (author.email && author.name) {
                     item.push({ author: author.email + ' (' + author.name + ')' });
                 }
@@ -172,7 +170,7 @@ exports["default"] = (function (ins) {
         if (entry.image) {
             item.push({ enclosure: [{ _attr: { url: entry.image } }] });
         }
-        var itunes = entry.itunes;
+        const { itunes } = entry;
         if (itunes) {
             // item.push(
             //   makeITunesField(
@@ -185,24 +183,24 @@ exports["default"] = (function (ins) {
             item.push({
                 guid: {
                     _attr: {
-                        isPermaLink: 'false'
+                        isPermaLink: 'false',
                     },
-                    _cdata: invariant(itunes, 'mp3URL')
-                }
+                    _cdata: invariant(itunes, 'mp3URL'),
+                },
             });
             item.push({
                 enclosure: {
                     _attr: {
                         length: invariant(itunes, 'enclosureLength'),
                         type: 'audio/mpeg',
-                        url: invariant(itunes, 'mp3URL')
-                    }
-                }
+                        url: invariant(itunes, 'mp3URL'),
+                    },
+                },
             });
             // item.push(
             //   makeITunesField('image', '', undefined, itunes.image || options.image),
             // )
-            item.push(makeITunesField('duration', formatTime_1.formatTime(itunes.duration)));
+            item.push(makeITunesField('duration', formatTime(itunes.duration)));
             item.push(makeITunesField('explicit', itunes.explicit ? 'yes' : 'no'));
             if (itunes.keywords && itunes.keywords.length)
                 item.push(makeITunesField('keywords', itunes.keywords.join(',')));
@@ -211,10 +209,10 @@ exports["default"] = (function (ins) {
             item.push(makeITunesField('episode', itunes.episode));
             item.push(makeITunesField('season', itunes.season));
             item.push({
-                'content:encoded': CDATA(itunes.contentEncoded)
+                'content:encoded': CDATA(itunes.contentEncoded),
             });
         }
-        channel.push({ item: item });
+        channel.push({ item });
     });
     if (isContent) {
         rss[0]._attr['xmlns:content'] = 'http://purl.org/rss/1.0/modules/content/';
@@ -227,11 +225,11 @@ exports["default"] = (function (ins) {
     rss[0]._attr['xmlns:itunes'] = 'http://www.itunes.com/dtds/podcast-1.0.dtd';
     rss[0]._attr['xmlns:media'] = 'http://search.yahoo.com/mrss/';
     rss[0]._attr['xmlns:rdf'] = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
-    return DOCTYPE + xml([{ rss: rss }], true);
-});
+    return DOCTYPE + xml([{ rss }], true);
+};
 function invariant(obj, key, msg) {
     if (!obj[key]) {
-        var errmsg = key + (msg || ' is missing from your frontmatter');
+        const errmsg = key + (msg || ' is missing from your frontmatter');
         console.error(errmsg + '\n ---- \n error found in', obj);
         throw new Error(errmsg);
     }

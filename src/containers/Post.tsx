@@ -18,7 +18,7 @@ export default withRouteData(
             number: content.frontmatter.number,
             displayNumber: content.frontmatter.number,
             title: content.frontmatter.title,
-            url: content.frontmatter.mp3URL,
+            url: '/' + content.frontmatter.mp3URL,
           }}
         />
         <hr />
