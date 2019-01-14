@@ -7,8 +7,7 @@ const { parse } = require('date-fns')
 
 // build feed is our main function to build a `Feed` object which we
 // can then serialize into various formats
-export const buildFeed = (files: string[]) => {
-  const myURL = 'https://reactstaticpodcast.netlify.com'
+export const buildFeed = (files: string[], myURL: string) => {
   const author = {
     name: 'foo',
     email: 'foo@bar.com',

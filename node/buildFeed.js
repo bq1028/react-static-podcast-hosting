@@ -8,8 +8,7 @@ var frontmatter = require('front-matter');
 var parse = require('date-fns').parse;
 // build feed is our main function to build a `Feed` object which we
 // can then serialize into various formats
-exports.buildFeed = function (files) {
-    var myURL = 'https://reactstaticpodcast.netlify.com';
+exports.buildFeed = function (files, myURL) {
     var author = {
         name: 'foo',
         email: 'foo@bar.com',

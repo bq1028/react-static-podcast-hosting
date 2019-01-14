@@ -9,7 +9,8 @@ const contentFolder = 'content'
 
 // generate RSS
 const episodes = fs.readdirSync(contentFolder)
-let { feed, contents } = buildFeed(episodes)
+const myURL = 'https://reactstaticpodcast.netlify.com'
+let { feed, contents } = buildFeed(episodes, myURL) // TODO: DO THE REST OF THE CONFIG IN HERE
 mkDir('/public/rss/')
 mkFile('/public/rss/index.xml', feed.rss2())
 
@@ -22,6 +23,7 @@ export default {
   // },
   getSiteData: () => ({
     title: 'React Static',
+    rss: path.join(myURL, 'rss', 'index.xml'),
     contents,
   }),
   getRoutes: async () => {
@@ -32,7 +34,7 @@ export default {
           contents,
         }),
         children: contents.map(content => ({
-          path: `/episode/${content.slug}`, // not ideal but ok
+          path: `/${content.slug}`,
           component: 'src/containers/Post',
           getData: () => ({
             content,
