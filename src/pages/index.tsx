@@ -9,8 +9,10 @@ export default withSiteData(({ contents }: { contents: Episode[] }) => (
     <p>make a podcast site and RSS feed with React-Static and Netlify</p>
     <p>
       <a href="https://twitter.com/swyx">Report issues here</a>
+    </p>
+    <p>
       <a href="https://github.com/sw-yx/react-static-podcast-hosting">
-        Fork and contrbute here
+        Fork and contribute on GitHub
       </a>
     </p>
     <ul>
