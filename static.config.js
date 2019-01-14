@@ -40,6 +40,7 @@ export default {
           component: 'src/containers/Post',
           getData: () => ({
             content,
+            myURL,
           }),
         })),
       },

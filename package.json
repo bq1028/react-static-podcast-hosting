@@ -8,7 +8,8 @@
     "bundle": "react-static bundle",
     "export": "react-static export",
     "serve": "serve dist -p 3000 -s",
-    "tsc:node": "tsc node/buildFeed.ts -w"
+    "oldtsc:node": "tsc node/buildFeed.ts -w --p tsconfig.json",
+    "tsc:node": "tsc -w"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
@@ -21,6 +22,7 @@
     "react": "^16.8.0-alpha.0",
     "react-dom": "^16.8.0-alpha.0",
     "react-hot-loader": "^4.3.12",
+    "react-icons": "^3.3.0",
     "react-static": "^6.0.18",
     "react-static-plugin-typescript": "^3.0.1",
     "xml": "^1.0.1"

@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
 var xml = require("xml");
+var formatTime_1 = require("../src/utils/formatTime");
 var DOCTYPE = '<?xml version="1.0" encoding="utf-8"?>\n';
 var CDATA = function (foo) { return ({
     _cdata: foo
@@ -201,7 +202,7 @@ exports["default"] = (function (ins) {
             // item.push(
             //   makeITunesField('image', '', undefined, itunes.image || options.image),
             // )
-            item.push(makeITunesField('duration', formatTime(itunes.duration)));
+            item.push(makeITunesField('duration', formatTime_1.formatTime(itunes.duration)));
             item.push(makeITunesField('explicit', itunes.explicit ? 'yes' : 'no'));
             if (itunes.keywords && itunes.keywords.length)
                 item.push(makeITunesField('keywords', itunes.keywords.join(',')));
@@ -228,18 +229,6 @@ exports["default"] = (function (ins) {
     rss[0]._attr['xmlns:rdf'] = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#';
     return DOCTYPE + xml([{ rss: rss }], true);
 });
-function formatTime(timeInSeconds) {
-    var hours = Math.floor(timeInSeconds / (60 * 60));
-    timeInSeconds -= hours * 60 * 60;
-    var minutes = Math.floor(timeInSeconds / 60);
-    timeInSeconds -= minutes * 60;
-    // left pad number with 0
-    var leftPad = function (num) { return ("" + num).padStart(2, '0'); };
-    var str = (hours ? leftPad(hours) + ":" : '') +
-        (minutes ? leftPad(minutes) + ":" : '') +
-        leftPad(timeInSeconds);
-    return str;
-}
 function invariant(obj, key, msg) {
     if (!obj[key]) {
         var errmsg = key + (msg || ' is missing from your frontmatter');

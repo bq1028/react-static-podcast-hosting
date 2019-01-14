@@ -2,6 +2,7 @@
 import { Item, Author } from './types'
 import * as xml from 'xml'
 import { Feed } from './feed'
+import { formatTime } from '@src/utils/formatTime'
 
 const DOCTYPE = '<?xml version="1.0" encoding="utf-8"?>\n'
 const CDATA = (foo: string) => ({
@@ -260,21 +261,6 @@ export default (ins: Feed) => {
   rss[0]._attr['xmlns:rdf'] = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'
 
   return DOCTYPE + xml([{ rss }], true)
-}
-
-function formatTime(timeInSeconds: number) {
-  const hours = Math.floor(timeInSeconds / (60 * 60))
-  timeInSeconds -= hours * 60 * 60
-  const minutes = Math.floor(timeInSeconds / 60)
-  timeInSeconds -= minutes * 60
-
-  // left pad number with 0
-  const leftPad = (num: number) => `${num}`.padStart(2, '0')
-  const str =
-    (hours ? `${leftPad(hours)}:` : '') +
-    (minutes ? `${leftPad(minutes)}:` : '') +
-    leftPad(timeInSeconds)
-  return str
 }
 
 function invariant(obj: { [index: string]: any }, key: string, msg?: string) {
