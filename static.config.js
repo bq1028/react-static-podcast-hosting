@@ -16,10 +16,10 @@ mkFile('/public/rss/index.xml', feed.rss2())
 // generate HTML
 export default {
   plugins: ['react-static-plugin-typescript'],
-  entry: path.join(__dirname, 'client', 'index.tsx'),
-  paths: {
-    src: 'client',
-  },
+  entry: path.join(__dirname, 'src', 'index.tsx'),
+  // paths: {
+  //   src: 'client',
+  // },
   getSiteData: () => ({
     title: 'React Static',
     contents,
@@ -27,13 +27,13 @@ export default {
   getRoutes: async () => {
     return [
       {
-        path: '/',
-        // getData: () => ({
-        //   contents,
-        // }),
+        path: 'episode',
+        getData: () => ({
+          contents,
+        }),
         children: contents.map(content => ({
           path: `/episode/${content.slug}`, // not ideal but ok
-          component: 'client/containers/Post',
+          component: 'src/containers/Post',
           getData: () => ({
             content,
           }),

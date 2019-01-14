@@ -1,9 +1,9 @@
 import React from 'react'
-import { withSiteData } from 'react-static'
+import { withRouteData } from 'react-static'
 import { Link } from '@reach/router'
 
 import { Episode } from '../types'
-export default withSiteData(({ contents }: { contents: Episode[] }) => (
+export default withRouteData(({ contents }: { contents: Episode[] }) => (
   <div>
     <h1>It's pod time.</h1>
     <br />
@@ -11,7 +11,7 @@ export default withSiteData(({ contents }: { contents: Episode[] }) => (
     <ul>
       {contents.map(content => (
         <li key={content.slug}>
-          <Link to={`/episode/${content.slug}/`}>
+          <Link to={`/episode/${content.slug}`}>
             {content.frontmatter.title}
           </Link>
         </li>

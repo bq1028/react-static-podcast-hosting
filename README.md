@@ -2,6 +2,12 @@
 
 use this to build your next free podcast site
 
+## Make Your Own
+
+```bash
+git clone --depth 1 https://github.com/sw-yx/react-static-typescript-starter
+```
+
 resources
 
 - https://github.com/sw-yx/react-static-typescript-starter
