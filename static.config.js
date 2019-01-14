@@ -13,6 +13,8 @@ const myURL = 'https://reactstaticpodcast.netlify.com'
 let { feed, contents } = buildFeed(episodes, myURL) // TODO: DO THE REST OF THE CONFIG IN HERE
 mkDir('/public/rss/')
 mkFile('/public/rss/index.xml', feed.rss2())
+const rss = myURL + 'rss/index.xml'
+console.log({ rss })
 
 // generate HTML
 export default {
@@ -23,7 +25,7 @@ export default {
   // },
   getSiteData: () => ({
     title: 'React Static',
-    rss: path.join(myURL, 'rss', 'index.xml'),
+    rss,
     contents,
   }),
   getRoutes: async () => {
