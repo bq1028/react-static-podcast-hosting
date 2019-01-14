@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:cc="http://web.resource.org/cc/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <channel>
+        <atom:link href="https:/reactstaticpodcast.netlify.com/rss" rel="self" type="application/rss+xml"/>
+        <title>React Static Podcast</title>
+        <link>https://reactstaticpodcast.netlify.com</link>
+        <language>en</language>
+        <description>a podcast feed and blog generator in React and hosted on Netlify</description>
+        <managingEditor/>
+        <pubDate>Mon, 14 Jan 2019 10:35:03 GMT</pubDate>
+        <lastBuildDate>Mon, 14 Jan 2019 10:35:03 GMT</lastBuildDate>
+        <docs>https://reactstaticpodcast.netlify.com</docs>
+        <generator>https://github.com/sw-yx/react-static-typescript-starter</generator>
+        <itunes:summary>podcast summary here</itunes:summary>
+        <itunes:author>foo</itunes:author>
+        <itunes:image>https://www.fillmurray.com/g/140/100</itunes:image>
+        <itunes:explicit>explicit</itunes:explicit>
+        <itunes:owner>
+            <itunes:name><![CDATA[foo]]></itunes:name>
+            <itunes:email>foo@bar.com</itunes:email>
+        </itunes:owner>
+        <itunes:type>episodic</itunes:type>
+        <copyright>copyrght YourNameHere</copyright>
+        <atom:link href="https:/reactstaticpodcast.netlify.com/atom.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[Hello World]]></title>
+            <link><![CDATA[https:/reactstaticpodcast.netlify.com/episodes/week0.mp3]]></link>
+            <guid>https:/reactstaticpodcast.netlify.com/episodes/week0.mp3</guid>
+            <pubDate>Sun, 13 Jan 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[<p>Hello world! this is a test episode</p>
+<blockquote>
+<p>We shall fight on the beaches</p>
+</blockquote>
+<p>Hello world</p>
+]]></description>
+            <content:encoded><![CDATA[<p>Hello world! this is a test episode</p>
+<blockquote>
+<p>We shall fight on the beaches</p>
+</blockquote>
+<p>Hello world</p>
+]]></content:encoded>
+            <author>foo@bar.com (foo)</author>
+            <guid isPermaLink="false"><![CDATA[https:/reactstaticpodcast.netlify.com/episodes/week0.mp3]]></guid>
+            <enclosure length="999999" type="audio/mpeg" url="https:/reactstaticpodcast.netlify.com/episodes/week0.mp3"/>
+            <itunes:duration>05:00</itunes:duration>
+            <itunes:explicit>no</itunes:explicit>
+            <itunes:subtitle><![CDATA[this is a plain text summary of the episode]]></itunes:subtitle>
+            <content:encoded><![CDATA[<p>Hello world! this is a test episode</p>
+<blockquote>
+<p>We shall fight on the beaches</p>
+</blockquote>
+<p>Hello world</p>
+]]></content:encoded>
+        </item>
+    </channel>
+</rss>

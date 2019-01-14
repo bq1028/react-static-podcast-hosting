@@ -1,19 +1,29 @@
-// from https://github.com/jpmonette/feed
+// adapted from https://github.com/jpmonette/feed
 
-import { FeedOptions, Item, Author, Extension } from './types'
+import {
+  FeedOptions,
+  Item,
+  Author,
+  Extension,
+  // ITunesCategory,
+  // ITunesOwner,
+  ITunesChannelFields,
+} from './types'
 // import renderAtom from './atom1'
 // import renderJSON from './json'
 import renderRSS from './rss2'
 
 export class Feed {
   options: FeedOptions
+  IToptions: ITunesChannelFields
   items: Item[] = []
   categories: string[] = []
   contributors: Author[] = []
   extensions: Extension[] = []
 
-  constructor(options: FeedOptions) {
+  constructor(options: FeedOptions, IToptions: ITunesChannelFields) {
     this.options = options
+    this.IToptions = IToptions
   }
 
   public addItem = (item: Item) => this.items.push(item)

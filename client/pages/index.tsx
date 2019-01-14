@@ -1,19 +1,22 @@
 import React from 'react'
 import { withSiteData } from 'react-static'
 
-export default withSiteData(() => (
+import { Episode } from '../types'
+
+export default withSiteData(({ contents }: { contents: Episode[] }) => (
   <div style={{ textAlign: 'center' }}>
-    <h1>
-      Welcome to React-Static <br /> + TypeScript
-    </h1>
+    <h1>React-Static Podcast</h1>
+    <p>make a podcast site and RSS feed with React-Static and Netlify</p>
     <p>
-      Learn{' '}
-      <a href="https://github.com/sw-yx/react-typescript-cheatsheet">
-        React + TypeScript
+      <a href="https://twitter.com/swyx">Report issues here</a>
+      <a href="https://github.com/sw-yx/react-static-podcast-hosting">
+        Fork and contrbute here
       </a>
     </p>
-    <p>
-      <a href="https://twitter.com/swyx">Report issues with this template</a>
-    </p>
+    <ul>
+      {contents.map(({ slug, frontmatter }) => (
+        <li key={slug}>{frontmatter.title}</li>
+      ))}
+    </ul>
   </div>
 ))

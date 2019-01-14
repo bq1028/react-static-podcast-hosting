@@ -1,13 +1,13 @@
 import React from 'react'
 import { withRouteData } from 'react-static'
 import { Link } from '@reach/router'
-import { Post } from '../types'
 
-export default withRouteData(({ post }: { post: Post }) => (
+import { Episode } from '../types'
+export default withRouteData(({ content }: { content: Episode }) => (
   <div>
-    <Link to="/blog/">{'<'} Back</Link>
+    <Link to="/">{'<'} Back</Link>
     <br />
-    <h3>{post.title}</h3>
-    <p>{post.body}</p>
+    <h3>{content.frontmatter.title}</h3>
+    {content.body}
   </div>
 ))

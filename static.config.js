@@ -1,36 +1,41 @@
 import axios from 'axios'
 import path from 'path'
+import { mkDir, mkFile } from './node/fs'
 const fs = require('fs')
-const Feed = require('./node/feed')
-const filter = require('lodash/filter')
-const sortBy = require('lodash/sortBy')
-const forEach = require('lodash/forEach')
-const get = require('lodash/get')
-const datefns = require('date-fns')
-const markdownIt = require('markdown-it')
-const frontmatter = require('front-matter')
+import { buildFeed } from './node/buildFeed'
 
+/// config
+const contentFolder = 'content'
+
+// generate RSS
+const episodes = fs.readdirSync(contentFolder)
+let { feed, contents } = buildFeed(episodes)
+mkDir('/public/rss/')
+mkFile('/public/rss/index.xml', feed.rss2())
+
+// generate HTML
 export default {
   plugins: ['react-static-plugin-typescript'],
   entry: path.join(__dirname, 'client', 'index.tsx'),
+  paths: {
+    src: 'client',
+  },
   getSiteData: () => ({
     title: 'React Static',
+    contents,
   }),
   getRoutes: async () => {
-    const { data: posts } = await axios.get(
-      'https://jsonplaceholder.typicode.com/posts',
-    )
     return [
       {
-        path: '/blog',
-        getData: () => ({
-          posts,
-        }),
-        children: posts.map(post => ({
-          path: `/post/${post.id}`,
+        path: '/',
+        // getData: () => ({
+        //   contents,
+        // }),
+        children: contents.map(content => ({
+          path: `/episode/${content.slug}`, // not ideal but ok
           component: 'client/containers/Post',
           getData: () => ({
-            post,
+            content,
           }),
         })),
       },
