@@ -1,6 +1,7 @@
 import React from 'react'
 import { withSiteData } from 'react-static'
 
+import { Link } from '@reach/router'
 import { Episode } from '../types'
 
 export default withSiteData(({ contents }: { contents: Episode[] }) => (
@@ -15,9 +16,12 @@ export default withSiteData(({ contents }: { contents: Episode[] }) => (
         Fork and contribute on GitHub
       </a>
     </p>
+    <b>Episodes</b>
     <ul>
       {contents.map(({ slug, frontmatter }) => (
-        <li key={slug}>{frontmatter.title}</li>
+        <li key={slug}>
+          <Link to={`/episode/${slug}`}>{frontmatter.title}</Link>
+        </li>
       ))}
     </ul>
   </div>
