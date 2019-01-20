@@ -208,11 +208,10 @@ export default (ins: Feed) => {
     if (entry.description) {
       item.push({ description: CDATA(entry.description) })
     }
-    // // SWYX: temporary disable for duplication
-    // if (entry.content) {
-    //   isContent = true
-    //   item.push({ 'content:encoded': CDATA(entry.content) })
-    // }
+    if (entry.content) {
+      isContent = true
+      item.push({ 'content:encoded': CDATA(entry.content) })
+    }
     /**
      * Item Author
      * http://cyber.law.harvard.edu/rss/rss.html#ltauthorgtSubelementOfLtitemgt
@@ -272,9 +271,8 @@ export default (ins: Feed) => {
       item.push(makeITunesField('episodeType', itunes.episodeType))
       item.push(makeITunesField('episode', itunes.episode))
       item.push(makeITunesField('season', itunes.season))
-      item.push({
-        'content:encoded': CDATA(itunes.contentEncoded),
-      })
+      //  // SWYX: temporary disable for duplication
+      // item.push({ 'content:encoded': CDATA(itunes.contentEncoded) })
     }
     channel.push({ item })
   })
