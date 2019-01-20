@@ -9,22 +9,49 @@ export default (ins) => {
     let isAtom = false;
     let isContent = false;
     const makeITunesField = (field, content, text, href) => {
-        if (!content)
+        if (!(content || text || href))
             return undefined;
         const record = { ['itunes:' + field]: content };
         record._attr = { href, text };
         return record;
     };
+    const categories = IToptions.categories.map((category) => {
+        let finalItem;
+        if (category.child) {
+            finalItem = [
+                {
+                    _attr: {
+                        text: category.cat,
+                    },
+                },
+                {
+                    'itunes:category': {
+                        _attr: {
+                            text: category.child,
+                        },
+                    },
+                },
+            ];
+        }
+        else {
+            finalItem = {
+                _attr: {
+                    text: category.cat,
+                },
+            };
+        }
+        return {
+            'itunes:category': finalItem,
+        };
+    });
+    console.log({ categories });
     const ITchannel = [
         makeITunesField('summary', IToptions.summary),
         makeITunesField('author', IToptions.author),
         makeITunesField('keywords', IToptions.keywords.join(',')),
-        ...IToptions.categories.map((category) => {
-            // TODO: recurse one level for child
-            return makeITunesField('category', '', category.cat);
-        }),
-        makeITunesField('image', IToptions.image),
-        makeITunesField('explicit', IToptions.explicit ? 'clean' : 'explicit'),
+        ...categories,
+        makeITunesField('image', IToptions.image, undefined, IToptions.image),
+        makeITunesField('explicit', IToptions.explicit ? 'yes' : 'clean'),
         {
             'itunes:owner': [
                 makeITunesField('name', CDATA(IToptions.owner.name)),
@@ -48,7 +75,8 @@ export default (ins) => {
         { link: options.link },
         { language: 'en' },
         { description: options.description },
-        { managingEditor: options.author },
+        // { managingEditor: `${options.author.name} (${options.author.email})` },
+        { managingEditor: options.author.email },
         {
             pubDate: options.updated // TODO: use actual last pub date
                 ? options.updated.toUTCString()
@@ -172,6 +200,7 @@ export default (ins) => {
         }
         const { itunes } = entry;
         if (itunes) {
+            // // SWYX: TEMPORARY DISABLE BECAUSE DUPLICATE
             // item.push(
             //   makeITunesField(
             //     'image',
@@ -180,14 +209,15 @@ export default (ins) => {
             //     itunes.image || IToptions.image,
             //   ),
             // )
-            item.push({
-                guid: {
-                    _attr: {
-                        isPermaLink: 'false',
-                    },
-                    _cdata: invariant(itunes, 'mp3URL'),
-                },
-            });
+            // // SWYX: TEMPORARY DISABLE BECAUSE DUPLICATE
+            // item.push({
+            //   guid: {
+            //     _attr: {
+            //       isPermaLink: 'false',
+            //     },
+            //     _cdata: invariant(itunes, 'mp3URL'),
+            //   },
+            // })
             item.push({
                 enclosure: {
                     _attr: {

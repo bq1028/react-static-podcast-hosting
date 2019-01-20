@@ -6,11 +6,12 @@ const frontmatter = require('front-matter');
 const { parse } = require('date-fns');
 // build feed is our main function to build a `Feed` object which we
 // can then serialize into various formats
+// TODO: Customize to your own details
 export const buildFeed = (files, myURL) => {
     const author = {
-        name: 'foo',
-        email: 'foo@bar.com',
-        link: 'https://twitter.com/swyx',
+        name: 'REACTSTATICPODCAST_AUTHOR_NAME',
+        email: 'REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com',
+        link: 'https://REACTSTATICPODCAST_AUTHOR_LINK.com',
     };
     let feed = new Feed({
         // blog feed options
@@ -18,20 +19,23 @@ export const buildFeed = (files, myURL) => {
         description: 'a podcast feed and blog generator in React and hosted on Netlify',
         link: myURL,
         id: myURL,
-        copyright: 'copyrght YourNameHere',
+        copyright: 'copyright REACTSTATICPODCAST_YOURNAMEHERE',
         feedLinks: {
-            atom: path.join(myURL, 'atom.xml'),
-            json: path.join(myURL, 'feed.json'),
-            rss: path.join(myURL, 'rss'),
+            atom: safeJoin(myURL, 'atom.xml'),
+            json: safeJoin(myURL, 'feed.json'),
+            rss: safeJoin(myURL, 'rss'),
         },
         author,
     }, {
         // itunes options
-        summary: 'podcast summary here',
+        summary: 'REACTSTATICPODCAST_SUMMARY_HERE',
         author: author.name,
         keywords: ['Technology'],
-        categories: [{ cat: 'Technology' }],
-        image: 'https://www.fillmurray.com/g/140/100',
+        categories: [
+            { cat: 'Technology' },
+            { cat: 'Technology', child: 'Developers' },
+        ],
+        image: 'https://www.fillmurray.com/g/1400/1400',
         explicit: false,
         owner: author,
         type: 'episodic',
@@ -55,8 +59,8 @@ export const buildFeed = (files, myURL) => {
         body = body.replace(/src="\//g, `src="${myURL}/`);
         feed.addItem({
             title: fm.title,
-            id: path.join(myURL, page),
-            link: path.join(myURL, fm.mp3URL),
+            id: safeJoin(myURL, page),
+            link: safeJoin(myURL, fm.mp3URL),
             date: parse(fm.date),
             content: body,
             author: [author],
@@ -71,7 +75,7 @@ export const buildFeed = (files, myURL) => {
                 episode: fm.episode,
                 season: fm.season,
                 contentEncoded: body,
-                mp3URL: path.join(myURL, fm.mp3URL),
+                mp3URL: safeJoin(myURL, fm.mp3URL),
                 enclosureLength: 999999,
             },
         });
@@ -84,3 +88,9 @@ export const buildFeed = (files, myURL) => {
     feed.addContributor(author);
     return { feed, contents };
 };
+function safeJoin(a, b) {
+    /** strip starting/leading slashes and only use our own */
+    let a1 = a.slice(-1) === '/' ? a.slice(0, a.length - 1) : a;
+    let b1 = b.slice(0) === '/' ? b.slice(1) : b;
+    return `${a1}/${b1}`;
+}

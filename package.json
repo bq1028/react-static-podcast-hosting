@@ -19,12 +19,12 @@
     "front-matter": "^3.0.1",
     "lodash": "^4.17.11",
     "markdown-it": "^8.4.2",
-    "react": "16.7.0-alpha.2",
-    "react-dom": "16.7.0-alpha.2",
+    "react": "^16.8.0-alpha.1",
+    "react-dom": "^16.8.0-alpha.1",
     "react-hot-loader": "^4.3.12",
     "react-icons": "^3.3.0",
     "react-static": "^6.0.18",
-    "react-static-plugin-typescript": "^3.0.1",
+    "react-static-plugin-typescript": "^3.1.0",
     "stylus": "^0.54.5",
     "xml": "^1.0.1"
   },
@@ -44,5 +44,9 @@
     "semi": false,
     "singleQuote": true,
     "trailingComma": "all"
+  },
+  "resolutions": {
+    "react": "16.8.0-alpha.1",
+    "react-dom": "16.8.0-alpha.1"
   }
 }
