@@ -13,7 +13,7 @@ const myURL = 'https://reactstaticpodcast.netlify.com'
 let { feed, contents } = buildFeed(episodes, myURL) // TODO: DO THE REST OF THE CONFIG IN HERE
 mkDir('/public/rss/')
 mkFile('/public/rss/index.xml', feed.rss2())
-const rss = myURL + 'rss/index.xml'
+const rss = myURL + '/rss/index.xml'
 console.log({ rss })
 
 // generate HTML
