@@ -37,9 +37,9 @@ export const buildFeed = (files: string[], myURL: string) => {
       keywords: ['Technology'],
       categories: [
         { cat: 'Technology' },
-        { cat: 'Technology', child: 'Developers' },
+        { cat: 'Technology', child: 'Tech News' },
       ],
-      image: 'https://www.fillmurray.com/g/1400/1400', // TODO: itunes cover art. you should customise this!
+      image: 'https://placekitten.com/g/1400/1400', // TODO: itunes cover art. you should customise this!
       explicit: false,
       owner: author,
       type: 'episodic',

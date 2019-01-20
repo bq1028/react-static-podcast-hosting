@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:cc="http://web.resource.org/cc/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:cc="http://web.resource.org/cc/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
     <channel>
         <atom:link href="https://reactstaticpodcast.netlify.com/rss" rel="self" type="application/rss+xml"/>
         <title>React Static Podcast</title>
@@ -7,8 +7,8 @@
         <language>en</language>
         <description>a podcast feed and blog generator in React and hosted on Netlify</description>
         <managingEditor>REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com</managingEditor>
-        <pubDate>Sun, 20 Jan 2019 21:57:17 GMT</pubDate>
-        <lastBuildDate>Sun, 20 Jan 2019 21:57:17 GMT</lastBuildDate>
+        <pubDate>Sun, 20 Jan 2019 22:09:36 GMT</pubDate>
+        <lastBuildDate>Sun, 20 Jan 2019 22:09:36 GMT</lastBuildDate>
         <docs>https://reactstaticpodcast.netlify.com</docs>
         <generator>https://github.com/sw-yx/react-static-typescript-starter</generator>
         <itunes:summary>REACTSTATICPODCAST_SUMMARY_HERE</itunes:summary>
@@ -18,7 +18,7 @@
         <itunes:category text="Technology">
             <itunes:category text="Developers"/>
         </itunes:category>
-        <itunes:image>https://www.fillmurray.com/g/1400/1400</itunes:image>
+        <itunes:image href="https://placekitten.com/g/1400/1400"/>
         <itunes:explicit>clean</itunes:explicit>
         <itunes:owner>
             <itunes:name><![CDATA[REACTSTATICPODCAST_AUTHOR_NAME]]></itunes:name>
@@ -38,12 +38,6 @@
 </blockquote>
 <p>Hello world</p>
 ]]></description>
-            <content:encoded><![CDATA[<p>Hello world! this is a test episode</p>
-<blockquote>
-<p>We shall fight on the beaches</p>
-</blockquote>
-<p>Hello world</p>
-]]></content:encoded>
             <author>REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com (REACTSTATICPODCAST_AUTHOR_NAME)</author>
             <enclosure length="999999" type="audio/mpeg" url="https://reactstaticpodcast.netlify.com/episodes/week0.mp3"/>
             <itunes:duration>05:00</itunes:duration>

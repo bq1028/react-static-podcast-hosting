@@ -21,6 +21,7 @@ git clone --depth 1 https://github.com/sw-yx/react-static-typescript-starter
   - https://help.apple.com/itc/podcasts_connect/#/itc1723472cb
   - https://feedforall.com/itune-tutorial-tags.htm#category
   - NOTE: NEW TAGS introduced in 2017: https://theaudacitytopodcast.com/how-to-start-using-the-new-itunes-podcast-tags-for-ios-11-tap316/
+  - NOTE: NEW PODCAST CATEGORIES: https://castos.com/itunes-podcast-category-list/
 - xml utility https://www.npmjs.com/package/xml
   - source: https://github.com/jpmonette/feed
   - from: https://benmccormick.org/2017/06/03/rss-atom-json-gatsby/

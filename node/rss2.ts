@@ -65,7 +65,7 @@ export default (ins: Feed) => {
     makeITunesField('author', IToptions.author),
     makeITunesField('keywords', IToptions.keywords.join(',')),
     ...categories,
-    makeITunesField('image', IToptions.image, undefined, IToptions.image),
+    { 'itunes:image': { _attr: { href: IToptions.image } } },
     makeITunesField('explicit', IToptions.explicit ? 'yes' : 'clean'), // TODO: check strings
     {
       'itunes:owner': [
@@ -77,25 +77,25 @@ export default (ins: Feed) => {
     makeITunesField('type', IToptions.type),
   ]
   const channel: any = [
-    {
-      'atom:link': {
-        _attr: {
-          href: invariant(
-            options.feedLinks,
-            'rss',
-            'missing in your feed channel config options',
-          ),
-          rel: 'self',
-          type: 'application/rss+xml',
-        },
-      },
-    },
+    // // SWYX: disabled for duplication
+    // {
+    //   'atom:link': {
+    //     _attr: {
+    //       href: invariant(
+    //         options.feedLinks,
+    //         'rss',
+    //         'missing in your feed channel config options',
+    //       ),
+    //       rel: 'self',
+    //       type: 'application/rss+xml',
+    //     },
+    //   },
+    // },
     { title: options.title },
     { link: options.link },
     { language: 'en' },
     { description: options.description },
-    // { managingEditor: `${options.author.name} (${options.author.email})` },
-    { managingEditor: options.author.email },
+    { managingEditor: `${options.author.email} (${options.author.email})` },
     {
       pubDate: options.updated // TODO: use actual last pub date
         ? options.updated.toUTCString()
@@ -208,10 +208,11 @@ export default (ins: Feed) => {
     if (entry.description) {
       item.push({ description: CDATA(entry.description) })
     }
-    if (entry.content) {
-      isContent = true
-      item.push({ 'content:encoded': CDATA(entry.content) })
-    }
+    // // SWYX: temporary disable for duplication
+    // if (entry.content) {
+    //   isContent = true
+    //   item.push({ 'content:encoded': CDATA(entry.content) })
+    // }
     /**
      * Item Author
      * http://cyber.law.harvard.edu/rss/rss.html#ltauthorgtSubelementOfLtitemgt

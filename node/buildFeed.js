@@ -33,9 +33,9 @@ export const buildFeed = (files, myURL) => {
         keywords: ['Technology'],
         categories: [
             { cat: 'Technology' },
-            { cat: 'Technology', child: 'Developers' },
+            { cat: 'Technology', child: 'Tech News' },
         ],
-        image: 'https://www.fillmurray.com/g/1400/1400',
+        image: 'https://placekitten.com/g/1400/1400',
         explicit: false,
         owner: author,
         type: 'episodic',
