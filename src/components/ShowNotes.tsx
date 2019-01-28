@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const SNDiv = styled('div')`
   width: 62%;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   padding: 2rem;
   h2 {
     border-bottom: 1px solid #e4e4e4;

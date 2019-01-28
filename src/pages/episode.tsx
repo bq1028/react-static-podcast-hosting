@@ -32,7 +32,7 @@ import React from 'react'
 //   )
 // }
 
-import { withSiteData } from 'react-static'
+import { withSiteData, RouteData } from 'react-static'
 // import { Link } from '@reach/router'
 import { Episode } from '../types'
 import Header from '@src/components/Header'
@@ -48,25 +48,28 @@ const Main = styled('main')`
   flex-wrap: wrap;
 `
 
-export default withSiteData(({ contents }: { contents: Episode[] }) => {
-  const [selected, setSelected] = React.useState(contents[0])
-
+type Props = { contents: Episode[]; mostRecentEpisode: Episode }
+export default withSiteData(({ contents, mostRecentEpisode }: Props) => {
   return (
-    <>
-      <Header />
-      <Main>
-        <Player
-          show={{
-            number: 2,
-            displayNumber: '2',
-            title: 'ittle',
-            url: 'urTHIS IS A URLl',
-          }}
-        />
-        <ShowList contents={contents} setSelected={setSelected} />
-        <ShowNotes selected={selected} />
-      </Main>
-      <Footer />
-    </>
+    <RouteData>
+      {({ content }) => (
+        <>
+          <Header />
+          <Main>
+            <Player
+              show={{
+                number: 2,
+                displayNumber: '2',
+                title: 'ittle',
+                url: 'urTHIS IS A URLl',
+              }}
+            />
+            <ShowList contents={contents} />
+            <ShowNotes />
+          </Main>
+          <Footer />
+        </>
+      )}
+    </RouteData>
   )
 })

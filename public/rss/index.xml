@@ -6,8 +6,8 @@
         <language>en</language>
         <description>a podcast feed and blog generator in React and hosted on Netlify</description>
         <managingEditor>REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com (REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com)</managingEditor>
-        <pubDate>Mon, 28 Jan 2019 06:58:30 GMT</pubDate>
-        <lastBuildDate>Mon, 28 Jan 2019 06:58:30 GMT</lastBuildDate>
+        <pubDate>Mon, 28 Jan 2019 08:57:37 GMT</pubDate>
+        <lastBuildDate>Mon, 28 Jan 2019 08:57:37 GMT</lastBuildDate>
         <docs>https://reactstaticpodcast.netlify.com</docs>
         <generator>https://github.com/sw-yx/react-static-typescript-starter</generator>
         <itunes:summary>REACTSTATICPODCAST_SUMMARY_HERE</itunes:summary>
@@ -76,22 +76,20 @@
             <guid>https://reactstaticpodcast.netlify.com/episodes/week2.mp3</guid>
             <pubDate>Sun, 20 Jan 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[<p>This episode first debuted on Anchor: <a href="https://anchor.fm/swyx/episodes/2---Hooks-in-DevTools--and-Regrettable-Tech-Choices-e30ap7">https://anchor.fm/swyx/episodes/2---Hooks-in-DevTools--and-Regrettable-Tech-Choices-e30ap7</a></p>
-<p><a href="https://www.reddit.com/r/reactjs/comments/ag1gye/hooks_support_added_in_devtools_v36/">Hooks support added in DevTools v3.6</a></p>
-<p><br></p>
-<p><a href="https://mxstbr.com/thoughts/tech-choice-regrets-at-spectrum/"><code>Tech Choices I Regret at Spectrum</code></a></p>
-<p><br></p>
-<p><a href="https://www.reddit.com/r/reactjs/comments/agpo04/react_best_practices/">React Best Practices</a></p>
-<p><br></p>
-<p><a href="https://www.reddit.com/r/reactjs/comments/ahtquu/learning_react_heres_my_first_go_at_it_a_pure_css/">A Pokedex using PokeAPI</a></p><p>
+<p>Links discussed:</p>
+<ul>
+<li><a href="https://www.reddit.com/r/reactjs/comments/ag1gye/hooks_support_added_in_devtools_v36/">Hooks support added in DevTools v3.6</a> -<a href="https://mxstbr.com/thoughts/tech-choice-regrets-at-spectrum/">Tech Choices I Regret at Spectrum</a></li>
+<li><a href="https://www.reddit.com/r/reactjs/comments/agpo04/react_best_practices/">React Best Practices</a></li>
+<li><a href="https://www.reddit.com/r/reactjs/comments/ahtquu/learning_react_heres_my_first_go_at_it_a_pure_css/">A Pokedex using PokeAPI</a></li>
+</ul>
 ]]></description>
             <content:encoded><![CDATA[<p>This episode first debuted on Anchor: <a href="https://anchor.fm/swyx/episodes/2---Hooks-in-DevTools--and-Regrettable-Tech-Choices-e30ap7">https://anchor.fm/swyx/episodes/2---Hooks-in-DevTools--and-Regrettable-Tech-Choices-e30ap7</a></p>
-<p><a href="https://www.reddit.com/r/reactjs/comments/ag1gye/hooks_support_added_in_devtools_v36/">Hooks support added in DevTools v3.6</a></p>
-<p><br></p>
-<p><a href="https://mxstbr.com/thoughts/tech-choice-regrets-at-spectrum/"><code>Tech Choices I Regret at Spectrum</code></a></p>
-<p><br></p>
-<p><a href="https://www.reddit.com/r/reactjs/comments/agpo04/react_best_practices/">React Best Practices</a></p>
-<p><br></p>
-<p><a href="https://www.reddit.com/r/reactjs/comments/ahtquu/learning_react_heres_my_first_go_at_it_a_pure_css/">A Pokedex using PokeAPI</a></p><p>
+<p>Links discussed:</p>
+<ul>
+<li><a href="https://www.reddit.com/r/reactjs/comments/ag1gye/hooks_support_added_in_devtools_v36/">Hooks support added in DevTools v3.6</a> -<a href="https://mxstbr.com/thoughts/tech-choice-regrets-at-spectrum/">Tech Choices I Regret at Spectrum</a></li>
+<li><a href="https://www.reddit.com/r/reactjs/comments/agpo04/react_best_practices/">React Best Practices</a></li>
+<li><a href="https://www.reddit.com/r/reactjs/comments/ahtquu/learning_react_heres_my_first_go_at_it_a_pure_css/">A Pokedex using PokeAPI</a></li>
+</ul>
 ]]></content:encoded>
             <author>REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com (REACTSTATICPODCAST_AUTHOR_NAME)</author>
             <enclosure length="999999" type="audio/mpeg" url="https://reactstaticpodcast.netlify.com/episodes/week2.mp3"/>
@@ -106,6 +104,7 @@
             <guid>https://reactstaticpodcast.netlify.com/episodes/week0.m4a</guid>
             <pubDate>Sun, 06 Jan 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[<p>This episode first debuted on Anchor: <a href="https://anchor.fm/swyx/episodes/0--TypeScript--UI-Engineering--and-FBT-e2r98k">https://anchor.fm/swyx/episodes/0--TypeScript--UI-Engineering--and-FBT-e2r98k</a></p>
+<p>Links discussed:</p>
 <ul>
 <li>Typescript: <a href="https://reddit.com/r/reactjs/comments/abtrxy/everything_i_write_in_2019_will_be_in_typescript/">https://reddit.com/r/reactjs/comments/abtrxy/everything_i_write_in_2019_will_be_in_typescript/</a></li>
 <li>React Kawaii: <a href="https://reddit.com/r/reactjs/comments/ac8yyt/react_kawaii_cute_react_svg_components/">https://reddit.com/r/reactjs/comments/ac8yyt/react_kawaii_cute_react_svg_components/</a></li>
@@ -116,6 +115,7 @@
 </ul>
 ]]></description>
             <content:encoded><![CDATA[<p>This episode first debuted on Anchor: <a href="https://anchor.fm/swyx/episodes/0--TypeScript--UI-Engineering--and-FBT-e2r98k">https://anchor.fm/swyx/episodes/0--TypeScript--UI-Engineering--and-FBT-e2r98k</a></p>
+<p>Links discussed:</p>
 <ul>
 <li>Typescript: <a href="https://reddit.com/r/reactjs/comments/abtrxy/everything_i_write_in_2019_will_be_in_typescript/">https://reddit.com/r/reactjs/comments/abtrxy/everything_i_write_in_2019_will_be_in_typescript/</a></li>
 <li>React Kawaii: <a href="https://reddit.com/r/reactjs/comments/ac8yyt/react_kawaii_cute_react_svg_components/">https://reddit.com/r/reactjs/comments/ac8yyt/react_kawaii_cute_react_svg_components/</a></li>

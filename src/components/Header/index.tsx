@@ -9,6 +9,9 @@ export default styled(Header)`
 const HLDiv = styled('div')`
   width: 70%;
   text-align: center;
+  display: grid;
+  align-items: center;
+  font-size: 1.5rem;
 `
 const AHeader = styled('header')`
   flex-wrap: wrap;

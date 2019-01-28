@@ -26,9 +26,9 @@ export default function HeaderRight() {
   // })
   return (
     <HRDiv>
-      <div id="title">
+      {/* <div id="title">
         <h2>YOUR TAGLINE HERE</h2>
-      </div>
+      </div> */}
       <div id="hosts">
         <div>
           <img

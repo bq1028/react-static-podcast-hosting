@@ -27,6 +27,7 @@ export default {
     title: 'React Static',
     rss,
     contents,
+    mostRecentEpisode: contents[0],
   }),
   getRoutes: async () => {
     return [

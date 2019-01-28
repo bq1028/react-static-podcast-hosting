@@ -27,6 +27,16 @@ const LI = styled('li')`
       outline-color: #f1c15d;
     }
   }
+  strong {
+    color: #1d1d1d;
+    font-size: 1.25rem;
+    margin: 0;
+  }
+  p {
+    text-transform: uppercase;
+    margin: 0;
+    color: #666;
+  }
 `
 type Props = {
   episode: Episode
@@ -37,7 +47,7 @@ function ListItem({ episode }: Props) {
     <LI>
       <Link to={`/episode/${slug}`}>
         <p>Episode {frontmatter.episode}</p>
-        <h3>{frontmatter.title}</h3>
+        <strong>{frontmatter.title}</strong>
       </Link>
       <div className="playbutton">
         <button type="button" title="play button">
