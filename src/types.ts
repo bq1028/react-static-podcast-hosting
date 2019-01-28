@@ -5,6 +5,15 @@
 // }
 export interface Episode {
   slug: string
-  frontmatter: any
+  frontmatter: FMType
   body: any
+}
+export type FMType = {
+  title: string
+  mp3URL: string
+  date: Date
+  description: string
+  episodeType?: 'full' | 'trailer' | 'bonus'
+  episode?: number
+  season?: number
 }

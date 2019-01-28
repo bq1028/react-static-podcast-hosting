@@ -4,6 +4,7 @@ const path = require('path')
 const markdownIt = require('markdown-it')
 const frontmatter = require('front-matter')
 const { parse } = require('date-fns')
+import { FMType } from '@src/types'
 
 // build feed is our main function to build a `Feed` object which we
 // can then serialize into various formats
@@ -60,11 +61,12 @@ export const buildFeed = (files: string[], myURL: string) => {
   const contents = files.map(page => {
     const filepath = path.join(process.cwd(), 'content', page)
     let file = fs.readFileSync(filepath, 'utf-8')
-    let { attributes: fm, body } = frontmatter(file)
+    let { attributes, body } = frontmatter(file)
+    const fm = attributes as FMType
     // handle local links
     body = md.render(body)
     body = body.replace(/src="\//g, `src="${myURL}/`)
-
+    // console.log("keywords", fm.keywords)
     feed.addItem({
       title: fm.title,
       id: safeJoin(myURL, page),
@@ -74,10 +76,10 @@ export const buildFeed = (files: string[], myURL: string) => {
       author: [author],
       description: body,
       itunes: {
-        // image: 'https://via.placeholder.com/350x150',
-        duration: 5 * 60,
-        // explicit: false,
-        // keywords: string[]
+        // image: // up to you to configure but per-episode image is possible
+        duration: 5 * 60, // TODO: actually grab this from file
+        // explicit: false, // optional
+        // keywords: string[] // per-episode keywords possible
         subtitle: fm.description,
         episodeType: fm.episodeType || 'full',
         episode: fm.episode,

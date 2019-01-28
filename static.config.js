@@ -37,7 +37,7 @@ export default {
         }),
         children: contents.map(content => ({
           path: `/${content.slug}`,
-          component: 'src/containers/Post',
+          component: 'src/pages/episode',
           getData: () => ({
             content,
             myURL,
