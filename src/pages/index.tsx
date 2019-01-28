@@ -15,23 +15,17 @@ const Main = styled('main')`
   flex-wrap: wrap;
 `
 
-export default withSiteData(({ contents }: { contents: Episode[] }) => {
-  const [selected, setSelected] = React.useState(contents[0])
+type Props = { contents: Episode[]; mostRecentEpisode: Episode }
+export default withSiteData(({ contents, mostRecentEpisode }: Props) => {
+  // const [selected, setSelected] = React.useState(contents[0])
 
   return (
     <>
       <Header />
       <Main>
-        <Player
-          show={{
-            number: 2,
-            displayNumber: '2',
-            title: 'ittle',
-            url: 'urTHIS IS A URLl',
-          }}
-        />
-        <ShowList contents={contents} setSelected={setSelected} />
-        <ShowNotes selected={selected} />
+        <Player mostRecentEpisode={mostRecentEpisode} />
+        <ShowList contents={contents} />
+        <ShowNotes mostRecentEpisode={mostRecentEpisode} />
       </Main>
       <Footer />
     </>

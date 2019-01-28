@@ -2,6 +2,9 @@ import React from 'react'
 import { FaPlay, FaPause } from 'react-icons/fa'
 import { formatTime } from '../utils/formatTime'
 import './player.css'
+import { Episode } from '../types'
+
+import { withRouteData } from 'react-static'
 
 function usePrevious<T>(value: T) {
   const ref = React.useRef(value)
@@ -10,16 +13,30 @@ function usePrevious<T>(value: T) {
   })
   return ref.current
 }
-type MyProps = {
-  show: {
-    number: number
-    displayNumber: string
-    title: string
-    /** url of the mp3 of the show */
-    url: string
-  }
+type ShowProps = {
+  number: number
+  displayNumber: string
+  title: string
+  /** url of the mp3 of the show */
+  url: string
 }
-export default function Player({ show }: MyProps) {
+
+export default ({ mostRecentEpisode }: { mostRecentEpisode: Episode }) => {
+  const Comp = withRouteData(Player(mostRecentEpisode))
+  return <Comp />
+}
+
+type Props = { content?: Episode }
+const Player = (mostRecentEpisode: Episode) => ({ content }: Props) => {
+  console.log('player', { content, mostRecentEpisode })
+  const curEp = content || mostRecentEpisode
+  if (!curEp) return 'no content'
+  const show: ShowProps = {
+    number: curEp.frontmatter.episode,
+    displayNumber: '' + curEp.frontmatter.episode,
+    title: curEp.frontmatter.title,
+    url: `/${curEp.frontmatter.mp3URL}`,
+  }
   let lastPlayed = 0
   // // for SSR
   // if (typeof window !== 'undefined') {

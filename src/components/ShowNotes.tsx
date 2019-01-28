@@ -39,17 +39,17 @@ function NotesBar() {
   )
 }
 
-export default withRouteData(
-  ({ content }: { content: Episode }) =>
-    void console.log(content) ||
-    (!content ? (
-      'no content'
-    ) : (
-      <SNDiv>
-        <p className="show__date">{content.frontmatter.date}</p>
-        <h2>{content.frontmatter.title}</h2>
-        <NotesBar />
-        <div dangerouslySetInnerHTML={{ __html: content.body }} />
-      </SNDiv>
-    )),
-)
+type Props = { content?: Episode; mostRecentEpisode?: Episode }
+export default withRouteData(({ content, mostRecentEpisode }: Props) => {
+  console.log({ content, mostRecentEpisode })
+  const curEp = content || mostRecentEpisode
+  if (!curEp) return 'no content'
+  return (
+    <SNDiv>
+      <p className="show__date">{curEp.frontmatter.date}</p>
+      <h2>{curEp.frontmatter.title}</h2>
+      <NotesBar />
+      <div dangerouslySetInnerHTML={{ __html: curEp.body }} />
+    </SNDiv>
+  )
+})

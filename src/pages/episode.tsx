@@ -1,26 +1,4 @@
 import React from 'react'
-// // import { Link } from '@reach/router'
-
-// // import { Episode } from '../types'
-// // import Header from '@src/components/Header'
-// // import { withRouteData } from 'react-static'
-// // export default withRouteData(({ contents }: { contents: Episode[] }) => (
-// //   <>
-// //     <Header />
-// //     <h1>It's pod time.</h1>
-// //     <br />
-// //     All Episodes:
-// //     <ul>
-// //       {contents.map(content => (
-// //         <li key={content.slug}>
-// //           <Link to={`/episode/${content.slug}`}>
-// //             {content.frontmatter.title}
-// //           </Link>
-// //         </li>
-// //       ))}
-// //     </ul>
-// //   </>
-// // ))
 
 // export default function() {
 //   return (
@@ -32,8 +10,7 @@ import React from 'react'
 //   )
 // }
 
-import { withSiteData, RouteData } from 'react-static'
-// import { Link } from '@reach/router'
+import { withSiteData } from 'react-static'
 import { Episode } from '../types'
 import Header from '@src/components/Header'
 import Player from '@src/components/Player'
@@ -51,25 +28,14 @@ const Main = styled('main')`
 type Props = { contents: Episode[]; mostRecentEpisode: Episode }
 export default withSiteData(({ contents, mostRecentEpisode }: Props) => {
   return (
-    <RouteData>
-      {({ content }) => (
-        <>
-          <Header />
-          <Main>
-            <Player
-              show={{
-                number: 2,
-                displayNumber: '2',
-                title: 'ittle',
-                url: 'urTHIS IS A URLl',
-              }}
-            />
-            <ShowList contents={contents} />
-            <ShowNotes />
-          </Main>
-          <Footer />
-        </>
-      )}
-    </RouteData>
+    <>
+      <Header />
+      <Main>
+        <Player mostRecentEpisode={mostRecentEpisode} />
+        <ShowList contents={contents} />
+        <ShowNotes mostRecentEpisode={mostRecentEpisode} />
+      </Main>
+      <Footer />
+    </>
   )
 })
