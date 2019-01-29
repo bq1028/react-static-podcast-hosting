@@ -105,14 +105,14 @@ export default function ShowList({ contents }: MyProps) {
   return (
     <Location>
       {props => {
-        console.log({ contents })
+        // console.log({ contents })
         let activeEpisodeSlug = contents[0].slug
         if (props.location.pathname !== '/') {
           activeEpisodeSlug = props.location.pathname
             .split('/episode/')
             .slice(-1)[0] // just grab the slug at the end. pretty brittle but ok
         }
-        console.log('propslocation', props.location.pathname)
+        // console.log('propslocation', props.location.pathname)
         return (
           <UL>
             {contents.map(episode => (

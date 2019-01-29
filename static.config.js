@@ -15,16 +15,12 @@ let { feed, contents } = buildFeed(episodes, myURL) // TODO: DO THE REST OF THE 
 mkDir('/public/rss/')
 mkFile('/public/rss/index.xml', feed.rss2())
 const rss = myURL + '/rss/index.xml'
-console.log({ rss })
+// console.log({ rss })
 
 // generate HTML
 export default {
   plugins: ['react-static-plugin-typescript'],
   entry: path.join(__dirname, 'src', 'index.tsx'),
-  webpack: config => {
-    config.resolve.extensions.push('.ts', '.tsx')
-    return config
-  },
   // paths: {
   //   src: 'client',
   // },

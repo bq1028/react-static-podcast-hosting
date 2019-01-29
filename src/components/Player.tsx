@@ -165,7 +165,6 @@ const Player = (mostRecentEpisode: Episode) => ({ content }: Props) => {
   // const H3: React.FC = ({children}) => <h3>{children}</h3>
   // const TitleDisplay = playing ? H3 : Marquee
   const playerTime = `${formatTime(currentTime)} / ${formatTime(duration)}`
-  console.log({ currentTime, playerTime, fmt: formatTime(currentTime) })
   return (
     <div className="player">
       <div className="player__section player__section--left">

@@ -59,7 +59,7 @@ export default (ins: Feed) => {
       }
     },
   )
-  console.log({ categories })
+  // console.log({ categories })
   const ITchannel: any = [
     makeITunesField('summary', IToptions.summary),
     makeITunesField('author', IToptions.author),

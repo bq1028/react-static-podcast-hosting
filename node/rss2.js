@@ -44,7 +44,7 @@ export default (ins) => {
             'itunes:category': finalItem,
         };
     });
-    console.log({ categories });
+    // console.log({ categories })
     const ITchannel = [
         makeITunesField('summary', IToptions.summary),
         makeITunesField('author', IToptions.author),
