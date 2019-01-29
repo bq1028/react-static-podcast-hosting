@@ -5,7 +5,7 @@ import {
   // withSiteData
 } from 'react-static'
 // import { Link } from '@reach/router'
-
+import './normalize.css'
 import './app.css'
 
 function App() {

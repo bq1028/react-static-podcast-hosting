@@ -62,6 +62,7 @@ export const buildFeed = (files: string[], myURL: string) => {
     const filepath = path.join(process.cwd(), 'content', page)
     let file = fs.readFileSync(filepath, 'utf-8')
     let { attributes, body } = frontmatter(file)
+    attributes.date = new Date(attributes.date)
     const fm = attributes as FMType
     // handle local links
     body = md.render(body)

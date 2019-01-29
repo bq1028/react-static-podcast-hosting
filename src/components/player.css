@@ -63,16 +63,16 @@
   width: 100%;
 }
 .player__icon {
-  font-size: 2rem;
+  font-size: 1.25rem;
   line-height: 0.5;
 }
 .player__title {
   font-size: 1.5rem;
+  font-weight: inherit;
   margin: 0;
   flex: 1 0 auto;
   display: flex;
   align-items: center;
-  padding-left: 2rem;
   max-width: 650px;
 }
 @media (max-width: 650px) {
@@ -181,5 +181,5 @@
   min-width: 20px;
   height: 100%;
   transition: width 0.1s;
-  background: grad;
+  background: linear-gradient(30deg, #d2ff52 0%, #03fff3 100%);
 }

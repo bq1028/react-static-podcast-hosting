@@ -11,7 +11,7 @@ export interface Episode {
 export type FMType = {
   title: string
   mp3URL: string
-  date: Date
+  date: string
   description: string
   episodeType?: 'full' | 'trailer' | 'bonus'
   episode?: number

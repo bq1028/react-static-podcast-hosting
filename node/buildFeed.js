@@ -53,10 +53,13 @@ export const buildFeed = (files, myURL) => {
     const contents = files.map(page => {
         const filepath = path.join(process.cwd(), 'content', page);
         let file = fs.readFileSync(filepath, 'utf-8');
-        let { attributes: fm, body } = frontmatter(file);
+        let { attributes, body } = frontmatter(file);
+        attributes.date = new Date(attributes.date);
+        const fm = attributes;
         // handle local links
         body = md.render(body);
         body = body.replace(/src="\//g, `src="${myURL}/`);
+        // console.log("keywords", fm.keywords)
         feed.addItem({
             title: fm.title,
             id: safeJoin(myURL, page),
@@ -66,10 +69,10 @@ export const buildFeed = (files, myURL) => {
             author: [author],
             description: body,
             itunes: {
-                // image: 'https://via.placeholder.com/350x150',
+                // image: // up to you to configure but per-episode image is possible
                 duration: 5 * 60,
-                // explicit: false,
-                // keywords: string[]
+                // explicit: false, // optional
+                // keywords: string[] // per-episode keywords possible
                 subtitle: fm.description,
                 episodeType: fm.episodeType || 'full',
                 episode: fm.episode,

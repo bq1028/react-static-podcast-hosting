@@ -2,14 +2,35 @@ import React from 'react'
 import { Episode } from '../types'
 import { Link } from '@reach/router'
 import styled from 'styled-components'
+import { Location } from '@reach/router'
 
-const LI = styled('li')`
+type A = { isActive: boolean }
+const LI = styled('div')`
   border-right: 1px solid #e4e4e4;
   border-bottom: 1px solid #e4e4e4;
   border-left: 10px solid #e4e4e4;
-  background: #f9f9f9;
+  background: ${({ isActive }: A) => (isActive ? '#fff' : '#f9f9f9')};
+  ${({ isActive }: A) =>
+    isActive &&
+    `
+  border-right-color: #fff;
+  border-left: 0;
+  padding-left: 1rem;
+  :before {
+    display: block;
+    background: linear-gradient(30deg, #d2ff52 0%, #03fff3 100%);
+    width: 10px;
+    height: 100%;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  `};
   position: relative;
   display: flex;
+
   a {
     flex: 1 1 auto;
     padding: 10px;
@@ -40,11 +61,12 @@ const LI = styled('li')`
 `
 type Props = {
   episode: Episode
+  isActive: boolean
 }
-function ListItem({ episode }: Props) {
+function ListItem({ episode, isActive }: Props) {
   const { slug, frontmatter } = episode
   return (
-    <LI>
+    <LI isActive={isActive}>
       <Link to={`/episode/${slug}`}>
         <p>Episode {frontmatter.episode}</p>
         <strong>{frontmatter.title}</strong>
@@ -67,7 +89,7 @@ function ListItem({ episode }: Props) {
   )
 }
 
-const UL = styled('ul')`
+const UL = styled('div')`
   width: 38%;
   display: flex;
   flex-direction: column;
@@ -81,10 +103,28 @@ type MyProps = {
 
 export default function ShowList({ contents }: MyProps) {
   return (
-    <UL>
-      {contents.map(episode => (
-        <ListItem key={episode.slug} episode={episode} />
-      ))}
-    </UL>
+    <Location>
+      {props => {
+        console.log({ contents })
+        let activeEpisodeSlug = contents[0].slug
+        if (props.location.pathname !== '/') {
+          activeEpisodeSlug = props.location.pathname
+            .split('/episode/')
+            .slice(-1)[0] // just grab the slug at the end. pretty brittle but ok
+        }
+        console.log('propslocation', props.location.pathname)
+        return (
+          <UL>
+            {contents.map(episode => (
+              <ListItem
+                key={episode.slug}
+                episode={episode}
+                isActive={episode.slug === activeEpisodeSlug}
+              />
+            ))}
+          </UL>
+        )
+      }}
+    </Location>
   )
 }

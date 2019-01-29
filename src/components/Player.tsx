@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaPlay, FaPause } from 'react-icons/fa'
-import { formatTime } from '../utils/formatTime'
+// import { formatTime } from '../utils/formatTime'
 import './player.css'
 import { Episode } from '../types'
 
@@ -28,7 +28,6 @@ export default ({ mostRecentEpisode }: { mostRecentEpisode: Episode }) => {
 
 type Props = { content?: Episode }
 const Player = (mostRecentEpisode: Episode) => ({ content }: Props) => {
-  console.log('player', { content, mostRecentEpisode })
   const curEp = content || mostRecentEpisode
   if (!curEp) return 'no content'
   const show: ShowProps = {
@@ -113,7 +112,7 @@ const Player = (mostRecentEpisode: Episode) => ({ content }: Props) => {
 
   const togglePlay = () => {
     const method = playing ? 'pause' : 'play'
-    console.log('togglePlay', method, audio)
+    // console.log('togglePlay', method, audio)
     audio.current[method]()
   }
 
@@ -162,6 +161,11 @@ const Player = (mostRecentEpisode: Episode) => ({ content }: Props) => {
 
   const speedDown = () => speed(-0.25)
 
+  // const Marquee: React.FC = ({children}) => <marquee>{children}</marquee>
+  // const H3: React.FC = ({children}) => <h3>{children}</h3>
+  // const TitleDisplay = playing ? H3 : Marquee
+  const playerTime = `${formatTime(currentTime)} / ${formatTime(duration)}`
+  console.log({ currentTime, playerTime, fmt: formatTime(currentTime) })
   return (
     <div className="player">
       <div className="player__section player__section--left">
@@ -171,9 +175,7 @@ const Player = (mostRecentEpisode: Episode) => ({ content }: Props) => {
           type="button"
         >
           <p className="player__icon">{playing ? <FaPause /> : <FaPlay />}</p>
-          <p>
-            {formatTime(currentTime)} / {formatTime(duration)}
-          </p>
+          <p>{playerTime}</p>
         </button>
       </div>
 
@@ -198,8 +200,9 @@ const Player = (mostRecentEpisode: Episode) => ({ content }: Props) => {
           />
         </div>
         <h3 className="player__title">
-          Playing: {show.displayNumber}: {show.title}
+          {show.displayNumber}: {show.title}
         </h3>
+        `
         <div
           className="player__tooltip"
           style={{
@@ -218,12 +221,12 @@ const Player = (mostRecentEpisode: Episode) => ({ content }: Props) => {
           className="player__speed"
           type="button"
         >
-          <p>FASTNESS</p>
+          <p>SPEED</p>
           <span className="player__speeddisplay">{playbackRate} &times; </span>
         </button>
 
         <div className="player__volume">
-          <p>LOUDNESS</p>
+          <p>VOLUME</p>
           <div className="player__inputs">
             <input
               onChange={volume}
@@ -371,4 +374,20 @@ const Player = (mostRecentEpisode: Episode) => ({ content }: Props) => {
       {/* eslint-enable */}
     </div>
   )
+}
+
+function formatTime(timeInSeconds: number) {
+  const hours = Math.floor(timeInSeconds / (60 * 60))
+  timeInSeconds -= hours * 60 * 60
+  const minutes = Math.floor(timeInSeconds / 60)
+  timeInSeconds -= minutes * 60
+
+  // left pad number with 0
+  const leftPad = (num: number) => `${num}`.padStart(2, '0')
+  const str =
+    (hours ? `${leftPad(hours)}:` : '') +
+    // (minutes ? `${leftPad(minutes)}:` : '00') +
+    `${leftPad(minutes)}:` +
+    leftPad(Math.round(timeInSeconds))
+  return str
 }
