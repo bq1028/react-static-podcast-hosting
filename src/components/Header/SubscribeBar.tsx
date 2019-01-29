@@ -1,17 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-
-const subscribeLinks = [
-  {
-    type: 'itunes',
-    url:
-      'https://itunes.apple.com/ca/podcast/syntax-tasty-web-development-treats/id1253186678?mt=2',
-  },
-  {
-    type: 'rss',
-    url: 'https://rss',
-  },
-]
+import { withSiteData } from 'react-static'
 
 const SubDiv = styled('ul')`
   width: 100%;
@@ -37,7 +26,7 @@ const SubDiv = styled('ul')`
     display: flex;
     align-items: center;
   }
-  .itunes {
+  .iTunes {
     background: linear-gradient(
       to bottom,
       #cd66f6 0%,
@@ -45,7 +34,7 @@ const SubDiv = styled('ul')`
       #8e34c9 100%
     );
   }
-  .rss {
+  .RSS {
     background: linear-gradient(
       to bottom,
       #4366f6 0%,
@@ -54,7 +43,13 @@ const SubDiv = styled('ul')`
     );
   }
 `
-export default function SubscribeBar() {
+type Props = {
+  subscribeLinks: {
+    type: string
+    url: string
+  }[]
+}
+function SubscribeBar({ subscribeLinks }: Props) {
   return (
     <SubDiv>
       {subscribeLinks.map(link => (
@@ -72,3 +67,5 @@ export default function SubscribeBar() {
     </SubDiv>
   )
 }
+
+export default withSiteData(SubscribeBar)

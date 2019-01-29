@@ -15,7 +15,8 @@ let { feed, contents } = buildFeed(episodes, myURL) // TODO: DO THE REST OF THE 
 mkDir('/public/rss/')
 mkFile('/public/rss/index.xml', feed.rss2())
 const rss = myURL + '/rss/index.xml'
-// console.log({ rss })
+const itURL =
+  'https://itunes.apple.com/ca/podcast/syntax-tasty-web-development-treats/id1253186678?mt=2'
 
 // generate HTML
 export default {
@@ -30,6 +31,12 @@ export default {
     contents,
     mostRecentEpisode: contents[0],
     ghURL,
+    myURL,
+    subscribeLinks: [
+      { type: 'iTunes', url: itURL },
+      { type: 'RSS', url: rss },
+      { type: 'GitHub', url: ghURL },
+    ],
   }),
   getRoutes: async () => {
     return [
