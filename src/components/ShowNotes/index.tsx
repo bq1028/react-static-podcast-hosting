@@ -12,6 +12,9 @@ const SNDiv = styled('div')`
     padding-bottom: 1rem;
     margin-bottom: 0;
   }
+  @media (max-width: 650px) {
+    width: 100%;
+  }
 `
 type Props = { content?: Episode; mostRecentEpisode?: Episode }
 export default withRouteData(({ content, mostRecentEpisode }: Props) => {

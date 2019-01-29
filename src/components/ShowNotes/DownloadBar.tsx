@@ -7,6 +7,9 @@ const StyledDiv = styled('div')`
   display: flex;
   font-size: 0.8rem;
   justify-content: space-between;
+  @media (max-width: 650px) {
+    flex-direction: column-reverse;
+  }
   .button {
     border: 0;
     background: #f9f9f9;

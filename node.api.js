@@ -5,7 +5,7 @@ export default pluginOptions => ({
     config.resolve.extensions.push('.ts', '.tsx')
 
     // hooks dont work with uglifyjs https://github.com/webpack-contrib/uglifyjs-webpack-plugin/issues/374
-    config.optimization.minimizer.shift()
+    if (config.optimization.minimizer) config.optimization.minimizer.shift()
     // console.log('----------------------------------------------')
 
     return config

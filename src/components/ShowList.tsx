@@ -30,7 +30,6 @@ const LI = styled('div')`
   `};
   position: relative;
   display: flex;
-
   a {
     flex: 1 1 auto;
     padding: 10px;
@@ -94,6 +93,12 @@ const UL = styled('div')`
   display: flex;
   flex-direction: column;
   padding: 0;
+  @media (max-width: 650px) {
+    height: 300px;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: scroll;
+  }
 `
 
 type MyProps = {

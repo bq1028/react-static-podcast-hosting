@@ -32,7 +32,7 @@ export default function HeaderRight() {
       <div id="hosts">
         <div>
           <img
-            src="https://user-images.githubusercontent.com/35976578/39973926-0f34b514-56f3-11e8-9c4e-59547fedb719.jpg"
+            src="https://pbs.twimg.com/profile_images/990728399873232896/CMPn3IxT_400x400.jpg"
             alt="swyx"
           />
           <h3>swyx</h3>

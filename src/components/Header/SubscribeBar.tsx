@@ -10,7 +10,7 @@ const SubDiv = styled('ul')`
   list-style: none;
   align-items: stretch;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 
   a {
     color: rgba(0, 0, 0, 0.8);
@@ -26,6 +26,12 @@ const SubDiv = styled('ul')`
     display: flex;
     align-items: center;
   }
+
+  @media (max-width: 650px) {
+    a {
+      font-size: 1.25rem;
+    }
+  }
   .iTunes {
     background: linear-gradient(
       to bottom,
@@ -40,6 +46,24 @@ const SubDiv = styled('ul')`
       #4366f6 0%,
       #433dd1 80%,
       #4334c9 100%
+    );
+  }
+
+  .GitHub {
+    background: linear-gradient(
+      to bottom,
+      #5f66f6 0%,
+      #5f3dd1 80%,
+      #5f34c9 100%
+    );
+  }
+
+  .Netlify {
+    background: linear-gradient(
+      to bottom,
+      #5f66ff 0%,
+      #5f3dff 80%,
+      #5f34ff 100%
     );
   }
 `
