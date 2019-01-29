@@ -2,7 +2,7 @@
 title: TypeScript, UI Engineering, and FBT
 episode: 0
 date: 2019-01-06
-mp3URL: episodes/week0.m4a
+mp3URL: episodes/week0.mp3
 description: the first episode
 ---
 

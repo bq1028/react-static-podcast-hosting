@@ -1,5 +1,5 @@
 import React from 'react'
-import { Episode } from '../types'
+import { FMType } from '../types'
 import { Link } from '@reach/router'
 import styled from 'styled-components'
 import { Location } from '@reach/router'
@@ -59,14 +59,13 @@ const LI = styled('div')`
   }
 `
 type Props = {
-  episode: Episode
+  frontmatter: FMType
   isActive: boolean
 }
-function ListItem({ episode, isActive }: Props) {
-  const { slug, frontmatter } = episode
+function ListItem({ frontmatter, isActive }: Props) {
   return (
     <LI isActive={isActive}>
-      <Link to={`/episode/${slug}`}>
+      <Link to={`/episode/${frontmatter.slug}`}>
         <p>Episode {frontmatter.episode}</p>
         <strong>{frontmatter.title}</strong>
       </Link>
@@ -102,16 +101,15 @@ const UL = styled('div')`
 `
 
 type MyProps = {
-  contents: Episode[]
+  frontmatters: FMType[]
   setSelected?: Function
 }
 
-export default function ShowList({ contents }: MyProps) {
+export default function ShowList({ frontmatters }: MyProps) {
   return (
     <Location>
       {props => {
-        // console.log({ contents })
-        let activeEpisodeSlug = contents[0].slug
+        let activeEpisodeSlug = frontmatters[0].slug
         if (props.location.pathname !== '/') {
           activeEpisodeSlug = props.location.pathname
             .split('/episode/')
@@ -120,11 +118,11 @@ export default function ShowList({ contents }: MyProps) {
         // console.log('propslocation', props.location.pathname)
         return (
           <UL>
-            {contents.map(episode => (
+            {frontmatters.map(fm => (
               <ListItem
-                key={episode.slug}
-                episode={episode}
-                isActive={episode.slug === activeEpisodeSlug}
+                key={fm.slug}
+                frontmatter={fm}
+                isActive={fm.slug === activeEpisodeSlug}
               />
             ))}
           </UL>

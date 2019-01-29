@@ -6,8 +6,8 @@
         <language>en</language>
         <description>a podcast feed and blog generator in React and hosted on Netlify</description>
         <managingEditor>REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com (REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com)</managingEditor>
-        <pubDate>Tue, 29 Jan 2019 07:03:15 GMT</pubDate>
-        <lastBuildDate>Tue, 29 Jan 2019 07:03:15 GMT</lastBuildDate>
+        <pubDate>Tue, 29 Jan 2019 09:31:17 GMT</pubDate>
+        <lastBuildDate>Tue, 29 Jan 2019 09:31:17 GMT</lastBuildDate>
         <docs>https://reactstaticpodcast.netlify.com</docs>
         <generator>https://github.com/sw-yx/react-static-typescript-starter</generator>
         <itunes:summary>REACTSTATICPODCAST_SUMMARY_HERE</itunes:summary>
@@ -64,8 +64,8 @@
 </ul>
 ]]></content:encoded>
             <author>REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com (REACTSTATICPODCAST_AUTHOR_NAME)</author>
-            <enclosure length="999999" type="audio/mpeg" url="https://reactstaticpodcast.netlify.com/episodes/week3.mp3"/>
-            <itunes:duration>05:00</itunes:duration>
+            <enclosure length="8387522" type="audio/mpeg" url="https://reactstaticpodcast.netlify.com/episodes/week3.mp3"/>
+            <itunes:duration>05:49</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
             <itunes:subtitle><![CDATA[the third episode]]></itunes:subtitle>
             <itunes:episodeType>full</itunes:episodeType>
@@ -92,16 +92,16 @@
 </ul>
 ]]></content:encoded>
             <author>REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com (REACTSTATICPODCAST_AUTHOR_NAME)</author>
-            <enclosure length="999999" type="audio/mpeg" url="https://reactstaticpodcast.netlify.com/episodes/week2.mp3"/>
-            <itunes:duration>05:00</itunes:duration>
+            <enclosure length="10277742" type="audio/mpeg" url="https://reactstaticpodcast.netlify.com/episodes/week2.mp3"/>
+            <itunes:duration>07:08</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
             <itunes:subtitle><![CDATA[the second episode]]></itunes:subtitle>
             <itunes:episodeType>full</itunes:episodeType>
         </item>
         <item>
             <title><![CDATA[TypeScript, UI Engineering, and FBT]]></title>
-            <link><![CDATA[https://reactstaticpodcast.netlify.com/episodes/week0.m4a]]></link>
-            <guid>https://reactstaticpodcast.netlify.com/episodes/week0.m4a</guid>
+            <link><![CDATA[https://reactstaticpodcast.netlify.com/episodes/week0.mp3]]></link>
+            <guid>https://reactstaticpodcast.netlify.com/episodes/week0.mp3</guid>
             <pubDate>Sun, 06 Jan 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[<p>This episode first debuted on Anchor: <a href="https://anchor.fm/swyx/episodes/0--TypeScript--UI-Engineering--and-FBT-e2r98k">https://anchor.fm/swyx/episodes/0--TypeScript--UI-Engineering--and-FBT-e2r98k</a></p>
 <p>Links discussed:</p>
@@ -126,8 +126,8 @@
 </ul>
 ]]></content:encoded>
             <author>REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com (REACTSTATICPODCAST_AUTHOR_NAME)</author>
-            <enclosure length="999999" type="audio/mpeg" url="https://reactstaticpodcast.netlify.com/episodes/week0.m4a"/>
-            <itunes:duration>05:00</itunes:duration>
+            <enclosure length="10484380" type="audio/mpeg" url="https://reactstaticpodcast.netlify.com/episodes/week0.mp3"/>
+            <itunes:duration>10:55</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
             <itunes:subtitle><![CDATA[the first episode]]></itunes:subtitle>
         </item>

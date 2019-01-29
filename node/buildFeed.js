@@ -4,10 +4,39 @@ const path = require('path');
 const markdownIt = require('markdown-it');
 const frontmatter = require('front-matter');
 const { parse } = require('date-fns');
+const mp3Duration = require('mp3-duration');
+//markdownIt is a markdown parser that takes my raw md files and
+//translates them into HTML that we can use in the feed
+const md = markdownIt({
+    html: true,
+    linkify: true,
+    typographer: true,
+});
+// synchronously grab contents - a separate process because buildFeed needs to be async
+export const grabContents = (files, myURL) => {
+    // // old logic for reference - we may want to add thi sback in future
+    // pages = sortBy(pages, page => get(page, 'data.date'))
+    // pages = pages.slice(0, 10) // we only want the last 10 articles to show up in the feed
+    return files.map(file => {
+        const filepath = path.join(process.cwd(), 'content', file);
+        let { attributes, body } = frontmatter(fs.readFileSync(filepath, 'utf-8'));
+        (attributes.slug = file.split('.')[0]), // todo: slugify
+            // handle local links
+            (body = md.render(body));
+        body = body.replace(/src="\//g, `src="${myURL}/`);
+        const mp3path = path.join(process.cwd(), 'public', attributes.mp3URL);
+        return {
+            frontmatter: attributes,
+            body,
+            mp3path,
+            file,
+        };
+    });
+};
 // build feed is our main function to build a `Feed` object which we
 // can then serialize into various formats
-// TODO: Customize to your own details
-export const buildFeed = (files, myURL) => {
+// USER: Customize to your own details
+export const buildFeed = async (contents, myURL) => {
     const author = {
         name: 'REACTSTATICPODCAST_AUTHOR_NAME',
         email: 'REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com',
@@ -40,29 +69,11 @@ export const buildFeed = (files, myURL) => {
         owner: author,
         type: 'episodic',
     });
-    files = files.reverse(); // reverse chron
-    // pages = sortBy(pages, page => get(page, 'data.date'))
-    // pages = pages.slice(0, 10) // we only want the last 10 articles to show up in the feed
-    //markdownIt is a markdown parser that takes my raw md files and
-    //translates them into HTML that we can use in the feed
-    const md = markdownIt({
-        html: true,
-        linkify: true,
-        typographer: true,
-    });
-    const contents = files.map(page => {
-        const filepath = path.join(process.cwd(), 'content', page);
-        let file = fs.readFileSync(filepath, 'utf-8');
-        let { attributes, body } = frontmatter(file);
-        attributes.date = new Date(attributes.date);
-        const fm = attributes;
-        // handle local links
-        body = md.render(body);
-        body = body.replace(/src="\//g, `src="${myURL}/`);
-        // console.log("keywords", fm.keywords)
+    feed.addContributor(author);
+    await Promise.all(contents.map(async ({ frontmatter: fm, body, mp3path, file }) => {
         feed.addItem({
             title: fm.title,
-            id: safeJoin(myURL, page),
+            id: safeJoin(myURL, file),
             link: safeJoin(myURL, fm.mp3URL),
             date: parse(fm.date),
             content: body,
@@ -70,7 +81,7 @@ export const buildFeed = (files, myURL) => {
             description: body,
             itunes: {
                 // image: // up to you to configure but per-episode image is possible
-                duration: 5 * 60,
+                duration: await mp3Duration(mp3path, (err) => err && console.log(err.message)),
                 // explicit: false, // optional
                 // keywords: string[] // per-episode keywords possible
                 subtitle: fm.description,
@@ -79,17 +90,15 @@ export const buildFeed = (files, myURL) => {
                 season: fm.season,
                 contentEncoded: body,
                 mp3URL: safeJoin(myURL, fm.mp3URL),
-                enclosureLength: 999999,
+                enclosureLength: fs.statSync(mp3path).size,
             },
         });
         return {
-            slug: page.split('.')[0],
             frontmatter: fm,
             body,
         };
-    });
-    feed.addContributor(author);
-    return { feed, contents };
+    }));
+    return feed;
 };
 function safeJoin(a, b) {
     /** strip starting/leading slashes and only use our own */

@@ -18,7 +18,6 @@ const SNDiv = styled('div')`
 `
 type Props = { content?: Episode; mostRecentEpisode?: Episode }
 export default withRouteData(({ content, mostRecentEpisode }: Props) => {
-  // console.log({ content, mostRecentEpisode })
   const curEp = content || mostRecentEpisode
   if (!curEp) return 'no content'
   return (

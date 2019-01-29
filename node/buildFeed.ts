@@ -4,12 +4,55 @@ const path = require('path')
 const markdownIt = require('markdown-it')
 const frontmatter = require('front-matter')
 const { parse } = require('date-fns')
+const mp3Duration = require('mp3-duration')
 import { FMType } from '@src/types'
+
+//markdownIt is a markdown parser that takes my raw md files and
+//translates them into HTML that we can use in the feed
+const md = markdownIt({
+  html: true,
+  linkify: true,
+  typographer: true,
+})
+
+// synchronously grab contents - a separate process because buildFeed needs to be async
+export const grabContents = (files: string[], myURL: string) => {
+  // // old logic for reference - we may want to add thi sback in future
+  // pages = sortBy(pages, page => get(page, 'data.date'))
+  // pages = pages.slice(0, 10) // we only want the last 10 articles to show up in the feed
+  return files.map(file => {
+    const filepath = path.join(process.cwd(), 'content', file)
+    let { attributes, body } = frontmatter(
+      fs.readFileSync(filepath, 'utf-8'),
+    ) as {
+      attributes: FMType
+      body: string
+    }
+    ;(attributes.slug = file.split('.')[0]), // todo: slugify
+      // handle local links
+      (body = md.render(body))
+    body = body.replace(/src="\//g, `src="${myURL}/`)
+    const mp3path = path.join(
+      process.cwd(),
+      'public',
+      attributes.mp3URL,
+    ) as string
+    return {
+      frontmatter: attributes,
+      body,
+      mp3path,
+      file,
+    }
+  })
+}
 
 // build feed is our main function to build a `Feed` object which we
 // can then serialize into various formats
-// TODO: Customize to your own details
-export const buildFeed = (files: string[], myURL: string) => {
+// USER: Customize to your own details
+export const buildFeed = async (
+  contents: ReturnType<typeof grabContents>,
+  myURL: string,
+) => {
   const author = {
     name: 'REACTSTATICPODCAST_AUTHOR_NAME',
     email: 'REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com',
@@ -46,58 +89,43 @@ export const buildFeed = (files: string[], myURL: string) => {
       type: 'episodic',
     },
   )
-  files = files.reverse() // reverse chron
-  // pages = sortBy(pages, page => get(page, 'data.date'))
-  // pages = pages.slice(0, 10) // we only want the last 10 articles to show up in the feed
-
-  //markdownIt is a markdown parser that takes my raw md files and
-  //translates them into HTML that we can use in the feed
-  const md = markdownIt({
-    html: true,
-    linkify: true,
-    typographer: true,
-  })
-
-  const contents = files.map(page => {
-    const filepath = path.join(process.cwd(), 'content', page)
-    let file = fs.readFileSync(filepath, 'utf-8')
-    let { attributes, body } = frontmatter(file)
-    attributes.date = new Date(attributes.date)
-    const fm = attributes as FMType
-    // handle local links
-    body = md.render(body)
-    body = body.replace(/src="\//g, `src="${myURL}/`)
-    // console.log("keywords", fm.keywords)
-    feed.addItem({
-      title: fm.title,
-      id: safeJoin(myURL, page),
-      link: safeJoin(myURL, fm.mp3URL),
-      date: parse(fm.date),
-      content: body,
-      author: [author],
-      description: body,
-      itunes: {
-        // image: // up to you to configure but per-episode image is possible
-        duration: 5 * 60, // TODO: actually grab this from file
-        // explicit: false, // optional
-        // keywords: string[] // per-episode keywords possible
-        subtitle: fm.description,
-        episodeType: fm.episodeType || 'full',
-        episode: fm.episode,
-        season: fm.season,
-        contentEncoded: body,
-        mp3URL: safeJoin(myURL, fm.mp3URL),
-        enclosureLength: 999999, // TODO: actually grab this from file
-      },
-    })
-    return {
-      slug: page.split('.')[0], // todo: slugify
-      frontmatter: fm,
-      body,
-    }
-  })
   feed.addContributor(author)
-  return { feed, contents }
+
+  await Promise.all(
+    contents.map(async ({ frontmatter: fm, body, mp3path, file }) => {
+      feed.addItem({
+        title: fm.title,
+        id: safeJoin(myURL, file),
+        link: safeJoin(myURL, fm.mp3URL),
+        date: parse(fm.date),
+        content: body,
+        author: [author],
+        description: body,
+        itunes: {
+          // image: // up to you to configure but per-episode image is possible
+          duration: await mp3Duration(
+            mp3path,
+            (err: any) => err && console.error(err.message),
+          ),
+          // explicit: false, // optional
+          // keywords: string[] // per-episode keywords possible
+          subtitle: fm.description,
+          episodeType: fm.episodeType || 'full',
+          episode: fm.episode,
+          season: fm.season,
+          contentEncoded: body,
+          mp3URL: safeJoin(myURL, fm.mp3URL),
+          enclosureLength: fs.statSync(mp3path).size, // size in bytes
+        },
+      })
+      return {
+        frontmatter: fm,
+        body,
+      }
+    }),
+  )
+
+  return feed
 }
 
 function safeJoin(a: string, b: string) {

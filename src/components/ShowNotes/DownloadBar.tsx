@@ -46,7 +46,7 @@ export const DownloadBar: React.FC<DownloadBarProps> = ({ curEp, ghURL }) => {
       </a>
       <a
         className="button"
-        href={`${ghURL}/edit/master/content/${curEp.slug}.md`}
+        href={`${ghURL}/edit/master/content/${curEp.frontmatter.slug}.md`}
         target="_blank"
         rel="noopener noreferrer"
       >

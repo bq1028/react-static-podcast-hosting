@@ -4,7 +4,6 @@
 //   title: string
 // }
 export interface Episode {
-  slug: string
   frontmatter: FMType
   body: any
 }
@@ -16,4 +15,5 @@ export type FMType = {
   episodeType?: 'full' | 'trailer' | 'bonus'
   episode?: number
   season?: number
+  slug?: string
 }

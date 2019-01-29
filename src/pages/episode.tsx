@@ -11,7 +11,7 @@ import React from 'react'
 // }
 
 import { withSiteData } from 'react-static'
-import { Episode } from '../types'
+import { Episode, FMType } from '../types'
 import Header from '@src/components/Header'
 import Player from '@src/components/Player'
 import Footer from '@src/components/Footer'
@@ -25,14 +25,14 @@ const Main = styled('main')`
   flex-wrap: wrap;
 `
 
-type Props = { contents: Episode[]; mostRecentEpisode: Episode }
-export default withSiteData(({ contents, mostRecentEpisode }: Props) => {
+type Props = { frontmatters: FMType[]; mostRecentEpisode: Episode }
+export default withSiteData(({ frontmatters, mostRecentEpisode }: Props) => {
   return (
     <>
       <Header />
       <Main>
         <Player mostRecentEpisode={mostRecentEpisode} />
-        <ShowList contents={contents} />
+        <ShowList frontmatters={frontmatters} />
         <ShowNotes mostRecentEpisode={mostRecentEpisode} />
       </Main>
       <Footer />
