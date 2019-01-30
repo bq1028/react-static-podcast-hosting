@@ -1,7 +1,7 @@
 import React from 'react'
 import { withSiteData } from 'react-static'
 // import { Link } from '@reach/router'
-import { Episode, FMType } from '../types'
+import { Episode, EpisodeFrontMatter } from 'podcats'
 import Header from '@src/components/Header'
 import Player from '@src/components/Player'
 import Footer from '@src/components/Footer'
@@ -15,7 +15,7 @@ const Main = styled('main')`
   flex-wrap: wrap;
 `
 
-type Props = { frontmatters: FMType[]; mostRecentEpisode: Episode }
+type Props = { frontmatters: EpisodeFrontMatter[]; mostRecentEpisode: Episode }
 export default withSiteData(({ frontmatters, mostRecentEpisode }: Props) => {
   return (
     <>

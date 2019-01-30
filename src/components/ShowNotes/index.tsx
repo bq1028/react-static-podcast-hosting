@@ -1,5 +1,5 @@
 import React from 'react'
-import { Episode } from '../../types'
+import { Episode } from 'podcats'
 import { withRouteData } from 'react-static'
 import styled from 'styled-components'
 import DownloadBar from './DownloadBar'

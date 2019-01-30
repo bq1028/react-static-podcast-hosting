@@ -1,5 +1,5 @@
 import React from 'react'
-import { FMType } from '../types'
+import { EpisodeFrontMatter } from 'podcats'
 import { Link } from '@reach/router'
 import styled from 'styled-components'
 import { Location } from '@reach/router'
@@ -59,7 +59,7 @@ const LI = styled('div')`
   }
 `
 type Props = {
-  frontmatter: FMType
+  frontmatter: EpisodeFrontMatter
   isActive: boolean
 }
 function ListItem({ frontmatter, isActive }: Props) {
@@ -101,7 +101,7 @@ const UL = styled('div')`
 `
 
 type MyProps = {
-  frontmatters: FMType[]
+  frontmatters: EpisodeFrontMatter[]
   setSelected?: Function
 }
 

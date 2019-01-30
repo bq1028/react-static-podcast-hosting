@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Episode } from '../../types'
+import { Episode } from 'podcats'
 import { withSiteData } from 'react-static'
 
 const StyledDiv = styled('div')`
