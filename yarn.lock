@@ -6454,6 +6454,11 @@ pluralize@^7.0.0:
   resolved "https://registry.yarnpkg.com/pluralize/-/pluralize-7.0.0.tgz#298b89df8b93b0221dbf421ad2b1b1ea23fc6777"
   integrity sha512-ARhBOdzS3e41FbkW/XWrTEtukqqLoK5+Z/4UeDaLuSW+39JPeFgs4gCGqsrJHVZX0fUrx//4OF0K1CUGwlIFow==
 
+podcats@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/podcats/-/podcats-0.1.4.tgz#b4bfc6687d14915b36915349a15dc9d8cc866def"
+  integrity sha512-0uLZiBX67MM/JJwWQjuvJeIz4OT2HFQ8dui+7qVQYD1wzmnWrlrCfF2bMzAYT16HDbONGywXEHkA4ZX22nkbtg==
+
 portfinder@^1.0.20, portfinder@^1.0.9:
   version "1.0.20"
   resolved "https://registry.yarnpkg.com/portfinder/-/portfinder-1.0.20.tgz#bea68632e54b2e13ab7b0c4775e9b41bf270e44a"

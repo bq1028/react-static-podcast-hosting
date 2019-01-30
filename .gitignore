@@ -2,3 +2,4 @@ node_modules
 tmp
 dist
 .netlify
+.DS_Store

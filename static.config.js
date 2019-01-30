@@ -1,8 +1,8 @@
 import axios from 'axios'
 import path from 'path'
-import { mkDir, mkFile } from './node/fs'
+import { mkDir, mkFile } from './fs'
 const fs = require('fs')
-import { buildFeed, grabContents } from './node/buildFeed'
+import { buildFeed, grabContents } from 'podcats'
 
 /// config
 const myURL = 'https://reactstaticpodcast.netlify.com'
@@ -12,10 +12,47 @@ const itURL =
   'httpi://itunes.apple.com/ca/podcast/syntax-tasty-web-development-treats/id1253186678?mt=2'
 const netlifyURL = 'https://app.netlify.com/sites/reactstaticpodcast'
 const contentFolder = 'content'
+const author = {
+  name: 'REACTSTATICPODCAST_AUTHOR_NAME',
+  email: 'REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com',
+  link: 'https://REACTSTATICPODCAST_AUTHOR_LINK.com',
+}
+const feedOptions = {
+  // blog feed options
+  title: 'React Static Podcast',
+  description:
+    'a podcast feed and blog generator in React and hosted on Netlify',
+  link: myURL,
+  id: myURL,
+  copyright: 'copyright REACTSTATICPODCAST_YOURNAMEHERE',
+  feedLinks: {
+    atom: safeJoin(myURL, 'atom.xml'),
+    json: safeJoin(myURL, 'feed.json'),
+    rss: safeJoin(myURL, 'rss'),
+  },
+  author,
+}
+const iTunesChannelFields = {
+  // itunes options
+  summary: 'REACTSTATICPODCAST_SUMMARY_HERE',
+  author: author.name,
+  keywords: ['Technology'],
+  categories: [
+    { cat: 'Technology' },
+    { cat: 'Technology', child: 'Tech News' },
+  ],
+  image: 'https://placekitten.com/g/1400/1400', // TODO: itunes cover art. you should customise this!
+  explicit: false,
+  owner: author,
+  type: 'episodic',
+}
 
-// preprocessing
-const episodes = fs.readdirSync(contentFolder).reverse() // reverse chron
-const contents = grabContents(episodes, myURL)
+// preprocessing'
+const filenames = fs.readdirSync(contentFolder).reverse() // reverse chron
+const filepaths = filenames.map(file =>
+  path.join(process.cwd(), contentFolder, file),
+)
+const contents = grabContents(filepaths, myURL)
 const frontmatters = contents.map(c => c.frontmatter)
 mkDir('/public/rss/')
 
@@ -26,7 +63,13 @@ export default {
 
   getSiteData: async () => {
     // generate RSS
-    let feed = await buildFeed(contents, myURL) // USER: DO THE REST OF THE CONFIG IN HERE
+    let feed = await buildFeed(
+      contents,
+      myURL,
+      author,
+      feedOptions,
+      iTunesChannelFields,
+    )
     mkFile('/public/rss/index.xml', feed.rss2())
     return {
       title: 'React Static',
@@ -61,4 +104,11 @@ export default {
       },
     ]
   },
+}
+
+function safeJoin(a, b) {
+  /** strip starting/leading slashes and only use our own */
+  let a1 = a.slice(-1) === '/' ? a.slice(0, a.length - 1) : a
+  let b1 = b.slice(0) === '/' ? b.slice(1) : b
+  return `${a1}/${b1}`
 }

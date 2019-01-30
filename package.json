@@ -2,12 +2,9 @@
   "name": "react-static-podcast-hosting",
   "private": true,
   "scripts": {
-    "start": "concurrently 'yarn run rs:start' 'yarn run tsc:node'",
-    "rs:start": "react-static start",
-    "build": "yarn run build:node && yarn run build:stylus && react-static build",
-    "build:node": "tsc --project node",
-    "build:stylus": "stylus src/components/player.styl --out src/components",
-    "tsc:node": "tsc -w --project node"
+    "start": "react-static start",
+    "build": "yarn run build:stylus && react-static build",
+    "build:stylus": "stylus src/components/player.styl --out src/components"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",
@@ -18,6 +15,7 @@
     "front-matter": "^3.0.1",
     "lodash": "^4.17.11",
     "markdown-it": "^8.4.2",
+    "podcats": "^0.1.4",
     "react": "^16.8.0-alpha.1",
     "react-dom": "^16.8.0-alpha.1",
     "react-hot-loader": "^4.3.12",
@@ -49,5 +47,11 @@
   "resolutions": {
     "react": "16.8.0-alpha.1",
     "react-dom": "16.8.0-alpha.1"
-  }
+  },
+  "version": "1.0.0",
+  "description": "make your podcast feed AND host it on a React site at the same time",
+  "main": "static.config.js",
+  "repository": "https://github.com/sw-yx/react-static-podcast-hosting.git",
+  "author": "sw-yx <swyx@dontemail.me>",
+  "license": "MIT"
 }

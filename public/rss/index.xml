@@ -6,8 +6,8 @@
         <language>en</language>
         <description>a podcast feed and blog generator in React and hosted on Netlify</description>
         <managingEditor>REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com (REACTSTATICPODCAST_AUTHOR_EMAIL@foo.com)</managingEditor>
-        <pubDate>Tue, 29 Jan 2019 09:31:17 GMT</pubDate>
-        <lastBuildDate>Tue, 29 Jan 2019 09:31:17 GMT</lastBuildDate>
+        <pubDate>Wed, 30 Jan 2019 03:41:17 GMT</pubDate>
+        <lastBuildDate>Wed, 30 Jan 2019 03:41:17 GMT</lastBuildDate>
         <docs>https://reactstaticpodcast.netlify.com</docs>
         <generator>https://github.com/sw-yx/react-static-typescript-starter</generator>
         <itunes:summary>REACTSTATICPODCAST_SUMMARY_HERE</itunes:summary>
@@ -69,6 +69,7 @@
             <itunes:explicit>no</itunes:explicit>
             <itunes:subtitle><![CDATA[the third episode]]></itunes:subtitle>
             <itunes:episodeType>full</itunes:episodeType>
+            <itunes:episode>3</itunes:episode>
         </item>
         <item>
             <title><![CDATA[Hooks in DevTools, and Regrettable Tech Choices]]></title>
@@ -97,6 +98,7 @@
             <itunes:explicit>no</itunes:explicit>
             <itunes:subtitle><![CDATA[the second episode]]></itunes:subtitle>
             <itunes:episodeType>full</itunes:episodeType>
+            <itunes:episode>2</itunes:episode>
         </item>
         <item>
             <title><![CDATA[TypeScript, UI Engineering, and FBT]]></title>
@@ -130,6 +132,7 @@
             <itunes:duration>10:55</itunes:duration>
             <itunes:explicit>no</itunes:explicit>
             <itunes:subtitle><![CDATA[the first episode]]></itunes:subtitle>
+            <itunes:episodeType>full</itunes:episodeType>
         </item>
     </channel>
 </rss>
