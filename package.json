@@ -15,7 +15,7 @@
     "front-matter": "^3.0.1",
     "lodash": "^4.17.11",
     "markdown-it": "^8.4.2",
-    "podcats": "^0.1.5",
+    "podcats": "^0.1.6",
     "react": "^16.8.0-alpha.1",
     "react-dom": "^16.8.0-alpha.1",
     "react-hot-loader": "^4.3.12",
